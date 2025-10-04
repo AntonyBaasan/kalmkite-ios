@@ -11,11 +11,13 @@ import SwiftData
 class Exercise: Identifiable {
     var id: UUID = UUID()
     var name: String
+    var details: String
     var duration: TimeInterval
     
-    init(id: UUID, name: String, duration: TimeInterval) {
+    init(id: UUID, name: String, details: String, duration: TimeInterval) {
         self.id = id
         self.name = name
+        self.details = details
         self.duration = duration
     }
 }
