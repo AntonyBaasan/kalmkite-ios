@@ -9,12 +9,12 @@ import SwiftData
 
 @Model
 class Exercise: Identifiable {
-    var id: UUID = UUID()
+    var id: Int
     var name: String
     var details: String
     var duration: TimeInterval
     
-    init(id: UUID, name: String, details: String, duration: TimeInterval) {
+    init(id: Int, name: String, details: String, duration: TimeInterval) {
         self.id = id
         self.name = name
         self.details = details
