@@ -13,6 +13,9 @@ struct QuestionListView: View {
         
     var body: some View {
         NavigationStack {
+            Text("Select a question to explore related exercises:")
+                .font(.headline)
+                .padding()
             ForEach(questions) { question in
                 HStack {
                     NavigationLink(destination:ExerciseListView(exerciseIDs: question.connectedExercises)) {
