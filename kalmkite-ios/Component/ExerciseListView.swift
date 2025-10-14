@@ -15,29 +15,30 @@ struct ExerciseListView: View {
     @State private var exercises: [Exercise] = []
 
     var body: some View {
-//        List(exercises) { exercise in
-//            VStack(alignment: .leading) {
-//                Text(exercise.name)
-//                    .font(.headline)
-//                Text(exercise.description)
-//                    .font(.subheadline)
-//            }
-//        }
-        List(exerciseIDs, id: \.self) { id in
-            VStack(alignment: .leading) {
-                Text("Exercise ID: \(id)")
-                    .font(.headline)
-                Text(String(id))
-                    .font(.subheadline)
+        VStack {
+            Spacer()
+            List(exercises, id: \.id) { exercise in
+                NavigationLink(
+                    destination: ExerciseDetailView(exerciseId: exercise.id)
+                ) {
+                    VStack(alignment: .leading) {
+                        Text("Exercise ID: \(exercise.name)")
+                            .font(.headline)
+                        Text(String(exercise.details))
+                            .font(.subheadline)
+                    }
+                }
             }
+            .navigationTitle("Exercises")
         }
-        .navigationTitle("Exercises")
-        .onAppear{
+        .onAppear {
             exercises =
-                ExerciseStore.shared.exercises.filter { exerciseIDs.contains($0.id) }
+                ExerciseStore.shared.exercises.filter {
+                    exerciseIDs.contains($0.id)
+                }
         }
     }
 }
 #Preview {
-    ExerciseListView(exerciseIDs: [1,2,3,4])
+    ExerciseListView(exerciseIDs: [1, 2, 3, 4])
 }

@@ -13,11 +13,13 @@ class Exercise: Identifiable {
     var name: String
     var details: String
     var duration: TimeInterval
+    var status: ExerciseStatus
     
-    init(id: Int, name: String, details: String, duration: TimeInterval) {
+    init(id: Int, name: String, details: String, duration: TimeInterval, status: ExerciseStatus) {
         self.id = id
         self.name = name
         self.details = details
         self.duration = duration
+        self.status = status
     }
 }
