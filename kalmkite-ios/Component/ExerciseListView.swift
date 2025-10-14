@@ -16,16 +16,17 @@ struct ExerciseListView: View {
 
     var body: some View {
         VStack {
-            Spacer()
-            List(exercises, id: \.id) { exercise in
-                NavigationLink(
-                    destination: ExerciseDetailView(exerciseId: exercise.id)
-                ) {
-                    VStack(alignment: .leading) {
-                        Text("Exercise ID: \(exercise.name)")
-                            .font(.headline)
-                        Text(String(exercise.details))
-                            .font(.subheadline)
+            VStack {
+                ForEach(exercises) { exercise in
+                    NavigationLink(
+                        destination: ExerciseDetailView(exerciseId: exercise.id)
+                    ) {
+                        VStack(alignment: .leading) {
+                            Text(exercise.name)
+                                .font(.headline)
+                            Text(String(exercise.details))
+                                .font(.subheadline)
+                        }.padding(10)
                     }
                 }
             }
