@@ -14,12 +14,15 @@ class Exercise: Identifiable {
     var details: String
     var duration: TimeInterval
     var status: ExerciseStatus
-    
-    init(id: Int, name: String, details: String, duration: TimeInterval, status: ExerciseStatus) {
+    var exerciseType: ExerciseType
+    var metadata: [String: String] = [:]
+
+    init(id: Int, name: String, details: String, duration: TimeInterval, status: ExerciseStatus, exerciseType: ExerciseType) {
         self.id = id
         self.name = name
         self.details = details
         self.duration = duration
         self.status = status
+        self.exerciseType = exerciseType
     }
 }

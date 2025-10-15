@@ -13,11 +13,20 @@ struct ExerciseDetailView: View {
 
     var body: some View {
         VStack {
-            GuidedBreathing(exerciseId: self.exerciseId)
+            if exercise?.exerciseType == ExerciseType.Breathing {
+                GuidedBreathingView(exerciseId: self.exerciseId)
+            } else if exercise?.exerciseType == ExerciseType.Affirmation {
+                AffirmationView(exerciseId: self.exerciseId)
+            } else {
+                Text("Exercise type not supported yet.")
+            }
+        }.onAppear {
+            self.exercise = ExerciseStore.shared.exercises.first {
+                $0.id == self.exerciseId
+            }
         }
     }
 }
-
 
 #Preview {
     ExerciseDetailView(exerciseId: 1)

@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct GuidedBreathing: View {
+struct GuidedBreathingView: View {
     @Environment(\.dismiss) private var dismiss
     
     let exerciseId: Int
@@ -234,5 +234,5 @@ struct GuidedBreathing: View {
 }
 
 #Preview {
-    GuidedBreathing(exerciseId: 1)
+    GuidedBreathingView(exerciseId: 1)
 }

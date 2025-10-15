@@ -23,28 +23,32 @@ final class ExerciseStore {
                 name: "Guided Breathing",
                 details: "A 2-minute breathing exercise to help you reset.",
                 duration: 60,
-                status: ExerciseStatus.Active
+                status: ExerciseStatus.Active,
+                exerciseType: ExerciseType.Breathing
             ),
             Exercise(
                 id: 2,
                 name: "Quick Journal",
                 details: "Write down what’s bothering you in a safe space.",
                 duration: 180,
-                status: ExerciseStatus.Active
+                status: ExerciseStatus.Active,
+                exerciseType: ExerciseType.Journaling
             ),
             Exercise(
                 id: 3,
                 name: "Affirmation Boost",
                 details: "Positive statements to counter negative thoughts.",
                 duration: 90,
-                status: ExerciseStatus.Active
+                status: ExerciseStatus.Active,
+                exerciseType: ExerciseType.Affirmation
             ),
             Exercise(
                 id: 4,
                 name: "Focus Timer",
                 details: "A Pomodoro-style timer to help you regain focus.",
                 duration: 1500,
-                status: ExerciseStatus.Active
+                status: ExerciseStatus.Active,
+                exerciseType: ExerciseType.FocusTime
             ),
             Exercise(
                 id: 5,
@@ -52,7 +56,8 @@ final class ExerciseStore {
                 details:
                     "A short guided walk to help you unwind after meetings.",
                 duration: 600,
-                status: ExerciseStatus.Active
+                status: ExerciseStatus.Active,
+                exerciseType: ExerciseType.Walking
             ),
             Exercise(
                 id: 6,
@@ -60,7 +65,8 @@ final class ExerciseStore {
                 details:
                     "Strike a confident pose for 2 minutes to boost your mood and presence.",
                 duration: 120,
-                status: ExerciseStatus.Active
+                status: ExerciseStatus.Active,
+                exerciseType: ExerciseType.PowerPose
             ),
         ]
     }
