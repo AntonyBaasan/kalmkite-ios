@@ -6,6 +6,11 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		4F979AEA2E9F5BCC0072F21F /* ConfettiSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = 4F979AE92E9F5BCC0072F21F /* ConfettiSwiftUI */; };
+		4FA4800D2E9F5B27007C8E10 /* ConfettiSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = 4FA4800C2E9F5B27007C8E10 /* ConfettiSwiftUI */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXContainerItemProxy section */
 		4F33E01F2E91825B00083E96 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -52,6 +57,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4F979AEA2E9F5BCC0072F21F /* ConfettiSwiftUI in Frameworks */,
+				4FA4800D2E9F5B27007C8E10 /* ConfettiSwiftUI in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -112,6 +119,8 @@
 			);
 			name = "kalmkite-ios";
 			packageProductDependencies = (
+				4FA4800C2E9F5B27007C8E10 /* ConfettiSwiftUI */,
+				4F979AE92E9F5BCC0072F21F /* ConfettiSwiftUI */,
 			);
 			productName = "kalmkite-ios";
 			productReference = 4F33E00F2E91825A00083E96 /* kalmkite-ios.app */;
@@ -195,6 +204,9 @@
 			);
 			mainGroup = 4F33E0062E91825A00083E96;
 			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				4F1859152E9F58820042B26A /* XCRemoteSwiftPackageReference "ConfettiSwiftUI" */,
+			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 4F33E0102E91825A00083E96 /* Products */;
 			projectDirPath = "";
@@ -578,6 +590,29 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		4F1859152E9F58820042B26A /* XCRemoteSwiftPackageReference "ConfettiSwiftUI" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/simibac/ConfettiSwiftUI.git";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		4F979AE92E9F5BCC0072F21F /* ConfettiSwiftUI */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 4F1859152E9F58820042B26A /* XCRemoteSwiftPackageReference "ConfettiSwiftUI" */;
+			productName = ConfettiSwiftUI;
+		};
+		4FA4800C2E9F5B27007C8E10 /* ConfettiSwiftUI */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = ConfettiSwiftUI;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 4F33E0072E91825A00083E96 /* Project object */;
 }
