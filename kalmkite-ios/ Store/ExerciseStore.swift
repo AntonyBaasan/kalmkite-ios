@@ -22,7 +22,7 @@ final class ExerciseStore {
                 id: 1,
                 name: "Guided Breathing",
                 details: "A 2-minute breathing exercise to help you reset.",
-                duration: 120,
+                duration: 60,
                 status: ExerciseStatus.Active
             ),
             Exercise(

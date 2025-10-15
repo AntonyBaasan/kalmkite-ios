@@ -8,9 +8,9 @@
 import SwiftUI
 
 struct QuestionListView: View {
-    
+
     @State var questions: [Question] = QuestionStore.shared.questions
-        
+
     var body: some View {
         NavigationStack {
             Text("Select a question to explore related exercises:")
@@ -18,17 +18,27 @@ struct QuestionListView: View {
                 .padding()
             ForEach(questions) { question in
                 HStack {
-                    NavigationLink(destination:ExerciseListView(exerciseIDs: question.connectedExercises)) {
-                        
+                    NavigationLink(
+                        destination: ExerciseListView(
+                            exerciseIDs: question.connectedExercises
+                        )
+                    ) {
+
                         Text(question.text)
+                            .padding(5)
                     }
                 }.onTapGesture {
-                    print("Tapped on question: \(question.text) with connected exercises: \(question.connectedExercises)")
-
+                    print(
+                        "Tapped on question: \(question.text) with connected exercises: \(question.connectedExercises)"
+                    )
 
                 }
             }
             .navigationTitle("Home")
+//            Spacer()
+            NavigationLink(destination: TestView(), label: {
+                Text("Go to Test View")
+            })
         }
     }
 }

@@ -8,15 +8,24 @@
 import SwiftUI
 
 struct GuidedBreathing: View {
+    @Environment(\.dismiss) private var dismiss
+    
     let exerciseId: Int
     @State private var exercise: Exercise?
+    @State private var secondsLeft: Int = 0
     @State private var isBreathingActive = false
-    @State private var currentPhase = 0
+    @State private var currentPhase = -1
+    @State private var phaseProgress: Int = 0
+    // Progress from 0 to 1 for the entire exercise duration
     @State private var progress: CGFloat = 0
     @State private var timer: Timer?
+    @State private var isComplete: Bool = false
 
+    private let circleMaxSize: CGFloat = 210
+    private let circleMinSize: CGFloat = 160
     private let phases = ["Inhale", "Hold", "Exhale", "Hold"]
     private var phaseDuration: TimeInterval { 4.0 }
+    private var startDuration: TimeInterval { 3.0 }
 
     var body: some View {
         ZStack {
@@ -57,7 +66,7 @@ struct GuidedBreathing: View {
                         .frame(width: 240, height: 240)
                         .rotationEffect(.degrees(-90))
                         .animation(
-                            .linear(duration: exercise?.duration ?? 0),
+                            .linear(duration: 1.0),
                             value: progress
                         )
 
@@ -84,15 +93,18 @@ struct GuidedBreathing: View {
                     // Phase text
                     VStack(spacing: 8) {
                         Text(isBreathingActive ? phases[currentPhase] : "Ready")
-                            .font(.system(size: 32, weight: .thin))
+                            .font(.system(size: 24, weight: .thin))
                             .foregroundColor(.primary)
 
-                        Text("\(Int(phaseDuration))s")
+                        Text("\(Int(phaseProgress))s")
                             .font(.system(size: 16, weight: .light))
                             .foregroundColor(.secondary)
-                        Text("\(Int(currentPhase))s")
-                            .font(.system(size: 16, weight: .light))
-                            .foregroundColor(.secondary)
+                        //                        Text("\(Double(progress))")
+                        //                            .font(.system(size: 16, weight: .light))
+                        //                            .foregroundColor(.secondary)
+                        //                        Text("\(Double(secondsLeft))")
+                        //                            .font(.system(size: 16, weight: .light))
+                        //                            .foregroundColor(.secondary)
                     }
                 }
 
@@ -130,16 +142,30 @@ struct GuidedBreathing: View {
                             y: 5
                         )
                 }
-
                 Spacer()
             }
         }
         .onAppear {
             exercise = ExerciseStore.shared.getExercise(by: self.exerciseId)
+            self.secondsLeft = Int(exercise?.duration ?? 0)
         }
         .onDisappear {
             stopBreathing()
+        }.fullScreenCover(isPresented: $isComplete) {
+            // TODO: improve success criteria
+            ExerciseResultView(
+                result: ExerciseResult(
+                    isSuccess: secondsLeft < 5,
+                    message: "Congragulations!",
+                    motivation: "Great job completing the breathing exercise!",
+                    exerciseId: exerciseId,
+                ),
+                onDismiss: {
+                    dismiss()
+                }
+            )
         }
+        .presentationDetents([.medium, .large])
     }
 
     private func toggleBreathing() {
@@ -153,29 +179,33 @@ struct GuidedBreathing: View {
     private func startBreathing() {
         isBreathingActive = true
         currentPhase = 0
+        phaseProgress = 0
         progress = 0
+        secondsLeft = Int(exercise?.duration ?? 0)
 
         timer = Timer.scheduledTimer(
-            withTimeInterval: phaseDuration,
+            withTimeInterval: 1,
             repeats: true
         ) { _ in
-            withAnimation {
-                progress = 0
+            phaseProgress += 1
+
+            if phaseProgress >= Int(phaseDuration) {
+                phaseProgress = 0
+                currentPhase = (currentPhase + 1) % 4
             }
 
-            currentPhase = (currentPhase + 1) % 4
+            secondsLeft -= 1
+            if secondsLeft <= 0 {
+                stopBreathing()
+            }
 
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
                 withAnimation {
-                    progress = 1.0
+                    progress = CGFloat(
+                        1 - Double(secondsLeft)
+                            / Double(exercise?.duration ?? 1)
+                    )
                 }
-            }
-        }
-
-        // Start first animation
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
-            withAnimation {
-                progress = 1.0
             }
         }
     }
@@ -184,22 +214,20 @@ struct GuidedBreathing: View {
         isBreathingActive = false
         timer?.invalidate()
         timer = nil
-        progress = 0
-        currentPhase = 0
+        currentPhase = -1
+        isComplete = true
     }
 
     private var breathingCircleSize: CGFloat {
 
         if !isBreathingActive {
-            return 120
+            return self.circleMinSize
         }
-        
+
         switch currentPhase {
-        case 0: return 180
-        case 1: return 180
-        case 2: return 120
-        case 3: return 120
-        default: return 120
+        case 0, 1: return self.circleMaxSize
+        case 2, 3: return self.circleMinSize
+        default: return 150
         }
 
     }
