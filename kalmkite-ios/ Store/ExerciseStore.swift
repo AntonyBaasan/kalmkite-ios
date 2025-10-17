@@ -46,7 +46,8 @@ final class ExerciseStore {
                 id: 4,
                 name: "Focus Timer",
                 details: "A Pomodoro-style timer to help you regain focus.",
-                duration: 1500,
+//                duration: 900,
+                duration: 60,
                 status: ExerciseStatus.Active,
                 exerciseType: ExerciseType.FocusTime
             ),
