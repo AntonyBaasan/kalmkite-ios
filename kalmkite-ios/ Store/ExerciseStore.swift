@@ -46,8 +46,8 @@ final class ExerciseStore {
                 id: 4,
                 name: "Focus Timer",
                 details: "A Pomodoro-style timer to help you regain focus.",
-//                duration: 900,
-                duration: 60,
+                duration: 480,
+//                duration: 60,
                 status: ExerciseStatus.Active,
                 exerciseType: ExerciseType.FocusTime
             ),
@@ -56,7 +56,7 @@ final class ExerciseStore {
                 name: "Decompression Walk",
                 details:
                     "A short guided walk to help you unwind after meetings.",
-                duration: 600,
+                duration: 480,
                 status: ExerciseStatus.Active,
                 exerciseType: ExerciseType.Walking
             ),

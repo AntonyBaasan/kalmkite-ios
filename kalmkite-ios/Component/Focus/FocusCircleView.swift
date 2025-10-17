@@ -24,14 +24,6 @@ struct FocusCircularView: View {
             VStack {
                 // Header
                 HStack {
-//                    Button {
-//                        dismiss()
-//                    } label: {
-//                        Image(systemName: "xmark")
-//                            .font(.title3)
-//                            .foregroundColor(.white)
-//                    }
-
                     Spacer()
 
                     Text(exercise?.name ?? "Focus")
@@ -39,10 +31,6 @@ struct FocusCircularView: View {
                         .foregroundColor(.white)
 
                     Spacer()
-
-//                    Image(systemName: "xmark")
-//                        .font(.title3)
-//                        .foregroundColor(.clear)
                 }
                 .padding()
 
@@ -54,7 +42,7 @@ struct FocusCircularView: View {
                         .stroke(Color.white.opacity(0.3), lineWidth: 20)
 
                     Circle()
-                        .trim(from: 0, to: CGFloat(1 - remainingTime / totalTime))
+                        .trim(from: 0, to: totalTime > 0 ? CGFloat(remainingTime / totalTime) : 0)
                         .stroke(
                             LinearGradient(
                                 colors: [Color.white, Color.white.opacity(0.7)],
@@ -112,9 +100,9 @@ struct FocusCircularView: View {
             ExerciseResultView(
                 result: ExerciseResult(
                     isSuccess: true,
-                    message: "Congragulations!",
+                    message: "Congratulations!",
                     motivation: "Great job completing the focus time!",
-                    exerciseId: exerciseId,
+                    exerciseId: exerciseId
                 ),
                 onDismiss: {
                     dismiss()
@@ -144,4 +132,8 @@ struct FocusCircularView: View {
         let seconds = Int(time) % 60
         return String(format: "%02d:%02d", minutes, seconds)
     }
+}
+
+#Preview {
+    FocusCircularView(exerciseId: 4)
 }

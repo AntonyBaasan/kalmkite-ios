@@ -50,13 +50,13 @@ struct WalkView: View {
             VStack(spacing: 0) {
                 // Header
                 HStack {
-                    Button {
-                        dismiss()
-                    } label: {
-                        Image(systemName: "xmark")
-                            .font(.title3)
-                            .foregroundColor(.primary)
-                    }
+//                    Button {
+//                        dismiss()
+//                    } label: {
+//                        Image(systemName: "xmark")
+//                            .font(.title3)
+//                            .foregroundColor(.primary)
+//                    }
                     
                     Spacer()
                     
@@ -66,9 +66,9 @@ struct WalkView: View {
                     
                     Spacer()
                     
-                    Image(systemName: "xmark")
-                        .font(.title3)
-                        .foregroundColor(.clear)
+//                    Image(systemName: "xmark")
+//                        .font(.title3)
+//                        .foregroundColor(.clear)
                 }
                 .padding()
                 

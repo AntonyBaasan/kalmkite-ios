@@ -11,11 +11,13 @@ import SwiftData
 class Question: Identifiable {
     var id: Int
     var text: String
+    var icon: String
     var connectedExercises: [Int] = []
     
-    init(id: Int, text: String, connectedExercises: [Int] = []) {
+    init(id: Int, text: String, icon: String, connectedExercises: [Int] = []) {
         self.id = id
         self.text = text
+        self.icon = icon
         self.connectedExercises = connectedExercises
     }
 }
