@@ -64,8 +64,8 @@ struct ExerciseListView: View {
         .navigationBarTitleDisplayMode(.inline)
         .onAppear {
             exercises = ExerciseStore.shared.exercises.filter {
-                exerciseIDs.contains($0.id)
-                && $0.status == .Active
+                $0.status == .Active
+                && exerciseIDs.contains($0.id)
             }
         }
     }
