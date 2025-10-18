@@ -31,7 +31,7 @@ final class ExerciseStore {
                 name: "Quick Journal",
                 details: "Write down what’s bothering you in a safe space.",
                 duration: 180,
-                status: ExerciseStatus.Active,
+                status: ExerciseStatus.Disabled,
                 exerciseType: ExerciseType.Journaling
             ),
             Exercise(

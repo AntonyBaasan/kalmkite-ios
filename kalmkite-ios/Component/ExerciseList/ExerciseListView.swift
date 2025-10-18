@@ -65,6 +65,7 @@ struct ExerciseListView: View {
         .onAppear {
             exercises = ExerciseStore.shared.exercises.filter {
                 exerciseIDs.contains($0.id)
+                && $0.status == .Active
             }
         }
     }
