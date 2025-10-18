@@ -59,12 +59,12 @@ struct QuestionListView: View {
                         .padding(.bottom, 20)
                         
                         // Test view link (for development)
-                        NavigationLink(destination: TestView()) {
-                            Text("Developer: Test View")
-                                .font(.caption)
-                                .foregroundColor(.secondary)
-                                .padding(.vertical, 20)
-                        }
+//                        NavigationLink(destination: TestView()) {
+//                            Text("Developer: Test View")
+//                                .font(.caption)
+//                                .foregroundColor(.secondary)
+//                                .padding(.vertical, 20)
+//                        }
                     }
                 }
             }

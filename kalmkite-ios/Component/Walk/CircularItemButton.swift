@@ -55,7 +55,7 @@ struct CircularItemButton: View {
             Text(item.name)
                 .font(.caption)
                 .fontWeight(isSelected ? .semibold : .regular)
-                .foregroundColor(.primary)
+                .foregroundColor(.white)
                 .multilineTextAlignment(.center)
                 .frame(height: 32)
                 .lineLimit(2)

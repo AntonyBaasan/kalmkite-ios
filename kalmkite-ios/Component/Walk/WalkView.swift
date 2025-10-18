@@ -16,12 +16,11 @@ struct WalkView: View {
     @State private var showWalkSession = false
     @State private var walkItems: [WalkItem] = []
 
-    
     var body: some View {
         ZStack {
             // Background gradient
             LinearGradient(
-                colors: [Color.green.opacity(0.3), Color.blue.opacity(0.2)],
+                colors: [Color.green.opacity(0.8), Color.green.opacity(0.5)],
                 startPoint: .topLeading,
                 endPoint: .bottomTrailing
             )
@@ -42,7 +41,7 @@ struct WalkView: View {
                     
                     Text("Decompression Walk")
                         .font(.headline)
-                        .foregroundColor(.primary)
+                        .foregroundColor(.white)
                     
                     Spacer()
                     
@@ -57,11 +56,11 @@ struct WalkView: View {
                     Text("What will you notice?")
                         .font(.title2)
                         .fontWeight(.semibold)
-                        .foregroundColor(.primary)
+                        .foregroundColor(.white)
                     
                     Text("Select things to find while you walk")
                         .font(.subheadline)
-                        .foregroundColor(.secondary)
+                        .foregroundColor(.white)
                 }
                 .padding(.top, 20)
                 .padding(.bottom, 30)
@@ -71,10 +70,10 @@ struct WalkView: View {
                     Text("\(selectedItems.count)")
                         .font(.title3)
                         .fontWeight(.bold)
-                        .foregroundColor(.green)
+                        .foregroundColor(.white)
                     Text("selected")
                         .font(.subheadline)
-                        .foregroundColor(.secondary)
+                        .foregroundColor(.white)
                 }
                 .padding(.bottom, 20)
                 
@@ -101,7 +100,7 @@ struct WalkView: View {
                         }
                     }
                     .padding(.horizontal, 30)
-                    .padding(.bottom, 20)
+                    .padding(.vertical, 20)
                 }
                 
                 Spacer()
@@ -134,6 +133,9 @@ struct WalkView: View {
                 exerciseId: exerciseId,
                 selectedItems: Array(selectedItems).compactMap { id in
                     walkItems.first(where: { $0.id == id })
+                },
+                onDismissAll: {
+                    dismiss()
                 }
             )
         }
