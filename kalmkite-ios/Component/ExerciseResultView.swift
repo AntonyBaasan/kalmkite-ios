@@ -98,15 +98,15 @@ struct ExerciseResultView: View {
                     .animation(.spring(response: 0.5, dampingFraction: 0.7), value: showButton)
                 }
             }
-            .confettiCannon(trigger: $trigger)
-//            .confettiCannon(
-//                counter: $trigger,
-//                num: 50,
-//                confettis: [.text("🎉"), .text("✨"), .text("💚"), .text("⭐")],
-//                confettiSize: 20,
-//                rainHeight: 600,
-//                radius: 400
-//            )
+//            .confettiCannon(trigger: $trigger)
+            .confettiCannon(
+                trigger: $trigger,
+                num: 50,
+                confettis: [.text("🎉"), .text("✨"), .text("❤️"), .text("⭐")],
+                confettiSize: 20,
+                rainHeight: 600,
+                radius: 400
+            )
         }
         .onAppear {
             // Show content immediately with animation
