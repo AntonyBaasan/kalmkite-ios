@@ -33,13 +33,13 @@ struct FocusView: View {
             VStack {
                 // Header
                 HStack {
-//                    Button {
-//                        dismiss()
-//                    } label: {
-//                        Image(systemName: "xmark")
-//                            .font(.title3)
-//                            .foregroundColor(.white)
-//                    }
+                    Button {
+                        dismiss()
+                    } label: {
+                        Image(systemName: "xmark")
+                            .font(.title3)
+                            .foregroundColor(.white)
+                    }
 
                     Spacer()
 

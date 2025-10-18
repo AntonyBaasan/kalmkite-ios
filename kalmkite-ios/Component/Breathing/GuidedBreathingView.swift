@@ -1,176 +1,211 @@
 //
-//  GuidedBreathing.swift
+//  GuidedBreathingView 2.swift
 //  kalmkite-ios
 //
-//  Created by antair on 10/14/25.
+//  Created by antair on 10/17/25.
 //
 
 import SwiftUI
 
 struct GuidedBreathingView: View {
     @Environment(\.dismiss) private var dismiss
-    
+
     let exerciseId: Int
     @State private var exercise: Exercise?
     @State private var secondsLeft: Int = 0
     @State private var isBreathingActive = false
     @State private var currentPhase = -1
     @State private var phaseProgress: Int = 0
-    // Progress from 0 to 1 for the entire exercise duration
     @State private var progress: CGFloat = 0
     @State private var timer: Timer?
     @State private var isComplete: Bool = false
 
-    private let circleMaxSize: CGFloat = 210
-    private let circleMinSize: CGFloat = 160
+    private let circleMaxSize: CGFloat = 230
+    private let circleMinSize: CGFloat = 180
     private let phases = ["Inhale", "Hold", "Exhale", "Hold"]
     private var phaseDuration: TimeInterval { 4.0 }
-    private var startDuration: TimeInterval { 3.0 }
 
     var body: some View {
         ZStack {
-            // Soft gradient background
+            // Background gradient - same as FocusView
             LinearGradient(
-                colors: [Color.blue.opacity(0.1), Color.purple.opacity(0.1)],
+                colors: [Color.green.opacity(0.8), Color.green.opacity(0.5)],
                 startPoint: .topLeading,
                 endPoint: .bottomTrailing
             )
             .ignoresSafeArea()
 
-            VStack(spacing: 40) {
-                Spacer()
+            VStack {
+                // Header
+                HStack {
+                    Spacer()
 
-                // Exercise title
-                Text(exercise?.name ?? "Loading...")
-                    .font(.system(size: 28, weight: .light))
-                    .foregroundColor(.primary)
+                    Text(exercise?.name ?? "Breathing")
+                        .font(.headline)
+                        .foregroundColor(.white)
+
+                    Spacer()
+                }
+                .padding()
+
+                Spacer()
 
                 // Breathing circle animation
                 ZStack {
-                    // Outer ring
+                    // Outer ring (background)
                     Circle()
-                        .stroke(Color.blue.opacity(0.2), lineWidth: 3)
-                        .frame(width: 240, height: 240)
+                        .stroke(Color.white.opacity(0.3), lineWidth: 20)
+                        .frame(width: 250, height: 250)
 
                     // Animated progress ring
                     Circle()
                         .trim(from: 0, to: progress)
                         .stroke(
                             LinearGradient(
-                                colors: [.blue, .purple],
-                                startPoint: .topLeading,
-                                endPoint: .bottomTrailing
-                            ),
-                            style: StrokeStyle(lineWidth: 3, lineCap: .round)
-                        )
-                        .frame(width: 240, height: 240)
-                        .rotationEffect(.degrees(-90))
-                        .animation(
-                            .linear(duration: 1.0),
-                            value: progress
-                        )
-
-                    // Inner circle that scales
-                    Circle()
-                        .fill(
-                            LinearGradient(
                                 colors: [
-                                    .blue.opacity(0.3), .purple.opacity(0.3),
+                                    Color.white, Color.white.opacity(0.7),
                                 ],
                                 startPoint: .topLeading,
                                 endPoint: .bottomTrailing
-                            )
+                            ),
+                            style: StrokeStyle(lineWidth: 20, lineCap: .round)
                         )
+                        .frame(width: 250, height: 250)
+                        .rotationEffect(.degrees(-90))
+                        .animation(.linear(duration: 1.0), value: progress)
+
+                    // Inner animated breathing circle
+                    Circle()
+                        .fill(Color.white.opacity(0.3))
                         .frame(
-                            width: self.breathingCircleSize,
-                            height: self.breathingCircleSize
+                            width: breathingCircleSize,
+                            height: breathingCircleSize
                         )
                         .animation(
                             .easeInOut(duration: phaseDuration),
-                            value: currentPhase
+                            value: breathingCircleSize
                         )
 
-                    // Phase text
+                    // Phase text in center
                     VStack(spacing: 8) {
-                        Text(isBreathingActive ? phases[currentPhase] : "Ready")
-                            .font(.system(size: 24, weight: .thin))
-                            .foregroundColor(.primary)
+                        Text(phaseText)
+                            .font(
+                                .system(
+                                    size: 32,
+                                    weight: .semibold,
+                                    design: .rounded
+                                )
+                            )
+                            .foregroundColor(.white)
 
-                        Text("\(Int(phaseProgress))s")
-                            .font(.system(size: 16, weight: .light))
-                            .foregroundColor(.secondary)
-                        //                        Text("\(Double(progress))")
-                        //                            .font(.system(size: 16, weight: .light))
-                        //                            .foregroundColor(.secondary)
-                        //                        Text("\(Double(secondsLeft))")
-                        //                            .font(.system(size: 16, weight: .light))
-                        //                            .foregroundColor(.secondary)
+                        if isBreathingActive {
+                            Text("\(phaseProgress)s")
+                                .font(.system(size: 18, weight: .medium))
+                                .foregroundColor(.white.opacity(0.8))
+                        }
                     }
                 }
+                .padding(.bottom, 40)
+
+                // Time remaining
+                Text(timeString(from: TimeInterval(secondsLeft)))
+                    .font(
+                        .system(size: 24, weight: .semibold, design: .rounded)
+                    )
+                    .foregroundColor(.white)
+                    .padding(.bottom, 20)
 
                 // Details
                 if let details = exercise?.details {
                     Text(details)
-                        .font(.system(size: 16, weight: .light))
-                        .foregroundColor(.secondary)
+                        .font(.body)
+                        .foregroundColor(.white.opacity(0.9))
                         .multilineTextAlignment(.center)
                         .padding(.horizontal, 40)
+                        .transition(.opacity)
                 }
 
                 Spacer()
 
-                // Start/Stop button
-                Button(action: toggleBreathing) {
-                    Text(isBreathingActive ? "Stop" : "Start")
-                        .font(.system(size: 18, weight: .medium))
-                        .foregroundColor(.white)
-                        .frame(width: 200, height: 56)
-                        .background(
-                            LinearGradient(
-                                colors: isBreathingActive
-                                    ? [.red.opacity(0.8), .orange.opacity(0.8)]
-                                    : [.blue, .purple],
-                                startPoint: .leading,
-                                endPoint: .trailing
+                // Start/Done button
+                if isComplete {
+                    Button {
+                        dismiss()
+                    } label: {
+                        Text("Done")
+                            .font(.headline)
+                            .foregroundColor(.green)
+                            .frame(maxWidth: .infinity)
+                            .padding()
+                            .background(Color.white)
+                            .cornerRadius(12)
+                            .padding(.horizontal, 40)
+                            .padding(.bottom, 40)
+                    }
+                    .transition(.move(edge: .bottom).combined(with: .opacity))
+                } else {
+                    Button(action: toggleBreathing) {
+                        Text(isBreathingActive ? "Close" : "Start")
+                            .font(.headline)
+                            .foregroundColor(
+                                isBreathingActive
+                                    ? Color.green
+                                    : Color.white
                             )
-                        )
-                        .cornerRadius(28)
-                        .shadow(
-                            color: .black.opacity(0.1),
-                            radius: 10,
-                            x: 0,
-                            y: 5
-                        )
+                            .frame(maxWidth: .infinity)
+                            .padding()
+                            .background(
+                                isBreathingActive
+                                    ? Color.white
+                                    : Color.white.opacity(0.2)
+                            )
+                            .cornerRadius(12)
+                            .overlay(
+                                RoundedRectangle(cornerRadius: 12)
+                                    .stroke(Color.white, lineWidth: 2)
+                            )
+                            .padding(.horizontal, 40)
+                            .padding(.bottom, 40)
+                    }
                 }
-                Spacer()
             }
         }
+        .animation(.easeInOut, value: isComplete)
         .onAppear {
-            exercise = ExerciseStore.shared.getExercise(by: self.exerciseId)
-            self.secondsLeft = Int(exercise?.duration ?? 0)
+            exercise = ExerciseStore.shared.getExercise(by: exerciseId)
+            secondsLeft = Int(exercise?.duration ?? 0)
         }
         .onDisappear {
             stopBreathing()
-        }.fullScreenCover(isPresented: $isComplete) {
-            // TODO: improve success criteria
+        }
+        .fullScreenCover(isPresented: $isComplete) {
             ExerciseResultView(
                 result: ExerciseResult(
-                    isSuccess: secondsLeft < 5,
-                    message: "Congragulations!",
-                    motivation: "Great job completing the breathing exercise!",
-                    exerciseId: exerciseId,
+                    isSuccess: true,
+                    message: "Well Done!",
+                    motivation: "You completed your breathing exercise!",
+                    exerciseId: exerciseId
                 ),
                 onDismiss: {
                     dismiss()
                 }
             )
         }
-        .presentationDetents([.medium, .large])
+    }
+
+    private var phaseText: String {
+        if !isBreathingActive || currentPhase < 0
+            || currentPhase >= phases.count
+        {
+            return "Ready"
+        }
+        return phases[currentPhase]
     }
 
     private func toggleBreathing() {
         if isBreathingActive {
-            stopBreathing()
+//            stopBreathing()
+            dismiss()
         } else {
             startBreathing()
         }
@@ -178,10 +213,10 @@ struct GuidedBreathingView: View {
 
     private func startBreathing() {
         isBreathingActive = true
-        currentPhase = 0
         phaseProgress = 0
         progress = 0
         secondsLeft = Int(exercise?.duration ?? 0)
+        currentPhase = 0
 
         timer = Timer.scheduledTimer(
             withTimeInterval: 1,
@@ -195,17 +230,15 @@ struct GuidedBreathingView: View {
             }
 
             secondsLeft -= 1
-            if secondsLeft <= 0 {
-                stopBreathing()
+
+            withAnimation(.linear(duration: 1.0)) {
+                progress = CGFloat(
+                    1 - Double(secondsLeft) / Double(exercise?.duration ?? 1)
+                )
             }
 
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
-                withAnimation {
-                    progress = CGFloat(
-                        1 - Double(secondsLeft)
-                            / Double(exercise?.duration ?? 1)
-                    )
-                }
+            if secondsLeft <= 0 {
+                stopBreathing()
             }
         }
     }
@@ -215,24 +248,27 @@ struct GuidedBreathingView: View {
         timer?.invalidate()
         timer = nil
         currentPhase = -1
-        isComplete = true
+
+        if secondsLeft <= 0 {
+            isComplete = true
+        }
     }
 
     private var breathingCircleSize: CGFloat {
-
         if !isBreathingActive {
-            return self.circleMinSize
+            return circleMinSize
         }
 
         switch currentPhase {
-        case 0, 1: return self.circleMaxSize
-        case 2, 3: return self.circleMinSize
-        default: return 150
+        case 0, 1: return circleMaxSize  // Inhale & Hold (full)
+        case 2, 3: return circleMinSize  // Exhale & Hold (small)
+        default: return circleMinSize
         }
-
     }
-}
 
-#Preview {
-    GuidedBreathingView(exerciseId: 1)
+    private func timeString(from time: TimeInterval) -> String {
+        let minutes = Int(time) / 60
+        let seconds = Int(time) % 60
+        return String(format: "%02d:%02d", minutes, seconds)
+    }
 }
