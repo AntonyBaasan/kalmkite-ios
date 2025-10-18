@@ -20,9 +20,9 @@ struct AffirmationView: View {
     
     var body: some View {
         ZStack {
-            // Background gradient
+            // Background gradient - same as PowerPoseView
             LinearGradient(
-                colors: [Color.blue.opacity(0.6), Color.purple.opacity(0.6)],
+                colors: [Color.green.opacity(0.8), Color.green.opacity(0.5)],
                 startPoint: .topLeading,
                 endPoint: .bottomTrailing
             )
@@ -58,7 +58,10 @@ struct AffirmationView: View {
                 HStack(spacing: 8) {
                     ForEach(0..<count, id: \.self) { index in
                         Capsule()
-                            .fill(index <= currentIndex ? Color.white : Color.white.opacity(0.3))
+                            .fill(
+                                index <= currentIndex
+                                    ? Color.white : Color.white.opacity(0.3)
+                            )
                             .frame(height: 4)
                     }
                 }
@@ -103,7 +106,7 @@ struct AffirmationView: View {
                     } label: {
                         Text("Done")
                             .font(.headline)
-                            .foregroundColor(.blue)
+                            .foregroundColor(.green)
                             .frame(maxWidth: .infinity)
                             .padding()
                             .background(Color.white)
@@ -131,13 +134,12 @@ struct AffirmationView: View {
         }
         .animation(.easeInOut, value: currentIndex)
         .fullScreenCover(isPresented: $isComplete) {
-            // TODO: improve success criteria
             ExerciseResultView(
                 result: ExerciseResult(
                     isSuccess: true,
-                    message: "Congragulations!",
+                    message: "Congratulations!",
                     motivation: "Great job completing the affirmation exercise!",
-                    exerciseId: exerciseId,
+                    exerciseId: exerciseId
                 ),
                 onDismiss: {
                     dismiss()
