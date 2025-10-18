@@ -83,3 +83,5 @@ Pods/
 
 # Other
 .swiftpm/
+
+!*.xcworkspace/xcshareddata/swiftpm/Package.resolved
