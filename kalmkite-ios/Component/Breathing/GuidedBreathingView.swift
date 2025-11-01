@@ -42,7 +42,7 @@ struct GuidedBreathingView: View {
 
                     Text(exercise?.name ?? "Breathing")
                         .font(.headline)
-                        .foregroundColor(.white)
+                        .foregroundColor(.black)
 
                     Spacer()
                 }
@@ -96,30 +96,35 @@ struct GuidedBreathingView: View {
                                     design: .rounded
                                 )
                             )
-                            .foregroundColor(.white)
+                            .foregroundColor(.black)
 
                         if isBreathingActive {
                             Text("\(phaseProgress)s")
                                 .font(.system(size: 18, weight: .medium))
-                                .foregroundColor(.white.opacity(0.8))
+                                .foregroundColor(.gray.opacity(0.8))
                         }
                     }
                 }
                 .padding(.bottom, 40)
+                .onTapGesture {
+                    if !isBreathingActive {
+                        startBreathing()
+                    }
+                }
 
                 // Time remaining
                 Text(timeString(from: TimeInterval(secondsLeft)))
                     .font(
                         .system(size: 24, weight: .semibold, design: .rounded)
                     )
-                    .foregroundColor(.white)
+                    .foregroundColor(.black)
                     .padding(.bottom, 20)
 
                 // Details
                 if let details = exercise?.details {
                     Text(details)
                         .font(.body)
-                        .foregroundColor(.white.opacity(0.9))
+                        .foregroundColor(.black.opacity(0.9))
                         .multilineTextAlignment(.center)
                         .padding(.horizontal, 40)
                         .transition(.opacity)
@@ -137,7 +142,7 @@ struct GuidedBreathingView: View {
                             .foregroundColor(.green)
                             .frame(maxWidth: .infinity)
                             .padding()
-                            .background(Color.white)
+                            .background(Color.black)
                             .cornerRadius(12)
                             .padding(.horizontal, 40)
                             .padding(.bottom, 40)
@@ -150,7 +155,7 @@ struct GuidedBreathingView: View {
                             .foregroundColor(
                                 isBreathingActive
                                     ? Color.green
-                                    : Color.white
+                                    : Color.black
                             )
                             .frame(maxWidth: .infinity)
                             .padding()
