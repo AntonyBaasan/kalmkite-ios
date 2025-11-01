@@ -12,7 +12,7 @@ struct ContentView: View {
     @Environment(\.modelContext) private var modelContext
     @Query private var items: [Item]
 
-    @State private var splashScreenDuration = 1.2
+    @State private var splashScreenDuration = 2.0
     @State private var isActive = false
     @State private var size = 0.8
     @State private var opacity = 0.5
