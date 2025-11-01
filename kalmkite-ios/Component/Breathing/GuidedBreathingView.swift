@@ -29,11 +29,10 @@ struct GuidedBreathingView: View {
         ZStack {
             // Background gradient - same as FocusView
             LinearGradient(
-                colors: [Color.green.opacity(0.8), Color.green.opacity(0.5)],
+                colors: [Color.green.opacity(0.5), Color.green.opacity(0.2)],
                 startPoint: .topLeading,
                 endPoint: .bottomTrailing
-            )
-            .ignoresSafeArea()
+            ).ignoresSafeArea()
 
             VStack {
                 // Header

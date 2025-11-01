@@ -22,7 +22,7 @@ struct PowerPoseView: View {
         ZStack {
             // Background gradient
             LinearGradient(
-                colors: [Color.green.opacity(0.8), Color.green.opacity(0.5)],
+                colors: [Color.green.opacity(0.5), Color.green.opacity(0.2)],
                 startPoint: .topLeading,
                 endPoint: .bottomTrailing
             ).ignoresSafeArea()
@@ -40,26 +40,26 @@ struct PowerPoseView: View {
             VStack(spacing: 0) {
                 // Header
                 HStack {
-                    Button {
-                        dismiss()
-                    } label: {
-                        Image(systemName: "xmark")
-                            .font(.title3)
-                            .foregroundColor(.white)
-                    }
+//                    Button {
+//                        dismiss()
+//                    } label: {
+//                        Image(systemName: "xmark")
+//                            .font(.title3)
+//                            .foregroundColor(.white)
+//                    }
 
                     Spacer()
 
                     Text(exercise?.name ?? "Power Poses")
                         .font(.headline)
-                        .foregroundColor(.white)
+                        .foregroundColor(.black)
 
                     Spacer()
 
                     // Invisible button for balance
-                    Image(systemName: "xmark")
-                        .font(.title3)
-                        .foregroundColor(.clear)
+//                    Image(systemName: "xmark")
+//                        .font(.title3)
+//                        .foregroundColor(.clear)
                 }
                 .padding()
 
@@ -69,7 +69,7 @@ struct PowerPoseView: View {
                         Capsule()
                             .fill(
                                 index <= currentIndex
-                                    ? Color.white : Color.white.opacity(0.3)
+                                    ? Color.black : Color.black.opacity(0.3)
                             )
                             .frame(height: 4)
                     }
@@ -88,20 +88,20 @@ struct PowerPoseView: View {
                             // Pose number
                             Text("\(index + 1) of \(count)")
                                 .font(.subheadline)
-                                .foregroundColor(.white.opacity(0.8))
+                                .foregroundColor(.black.opacity(0.8))
 
                             // Pose title
                             Text(pose.title)
-                                .font(.title2)
+                                .font(.title)
                                 .fontWeight(.bold)
-                                .foregroundColor(.white)
+                                .foregroundColor(.black)
                                 .multilineTextAlignment(.center)
                                 .padding(.horizontal, 40)
 
                             // Pose description
                             Text(pose.detail)
-                                .font(.body)
-                                .foregroundColor(.white.opacity(0.9))
+                                .font(.title2)
+                                .foregroundColor(.black.opacity(0.9))
                                 .multilineTextAlignment(.center)
                                 .padding(.horizontal, 40)
 
@@ -126,7 +126,7 @@ struct PowerPoseView: View {
                             .foregroundColor(.blue)
                             .frame(maxWidth: .infinity)
                             .padding()
-                            .background(Color.white)
+                            .background(Color.black)
                             .cornerRadius(12)
                     }
                     .padding(.horizontal, 40)
@@ -140,7 +140,7 @@ struct PowerPoseView: View {
                         Text("Swipe to continue")
                             .font(.subheadline)
                     }
-                    .foregroundColor(.white.opacity(0.7))
+                    .foregroundColor(.black.opacity(0.7))
                     .padding(.bottom, 40)
                 }
             }

@@ -25,7 +25,7 @@ struct FocusView: View {
         ZStack {
             // Background gradient
             LinearGradient(
-                colors: [Color.green.opacity(0.8), Color.green.opacity(0.5)],
+                colors: [Color.green.opacity(0.5), Color.green.opacity(0.2)],
                 startPoint: .topLeading,
                 endPoint: .bottomTrailing
             ).ignoresSafeArea()

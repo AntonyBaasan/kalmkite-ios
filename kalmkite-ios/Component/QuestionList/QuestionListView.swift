@@ -12,14 +12,11 @@ struct QuestionListView: View {
 
     var body: some View {
         NavigationStack {
+            
             ZStack {
                 // Background gradient
                 LinearGradient(
-                    colors: [
-                        Color.green.opacity(0.2),
-                        Color.green.opacity(0.1),
-                        Color.white
-                    ],
+                    colors: [.green.opacity(0.8), .green.opacity(0.6)],
                     startPoint: .topLeading,
                     endPoint: .bottomTrailing
                 )
@@ -31,12 +28,12 @@ struct QuestionListView: View {
                         VStack(spacing: 12) {
                             Text("How are you feeling?")
                                 .font(.system(size: 32, weight: .bold))
-                                .foregroundColor(.primary)
+                                .foregroundColor(.white)
                                 .multilineTextAlignment(.center)
                             
                             Text("Select what's on your mind")
                                 .font(.subheadline)
-                                .foregroundColor(.secondary)
+                                .foregroundColor(.white.opacity(0.9))
                         }
                         .padding(.top, 20)
                         .padding(.bottom, 30)
