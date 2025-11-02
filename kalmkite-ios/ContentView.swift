@@ -28,24 +28,24 @@ struct ContentView: View {
     }
 
     var body: some View {
-        //        QuestionListView()
-        if isActive {
-            QuestionListView()
-        } else {
-            SplashScreenView(size: $size, opacity: $opacity)
-                .onAppear {
-                    withAnimation(.easeIn(duration: splashScreenDuration)) {
-                        self.size = 0.9
-                        self.opacity = 1.0
-                    }
-
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-                        withAnimation {
-                            self.isActive = true
-                        }
-                    }
-                }
-        }
+        QuestionListView()
+        //        if isActive {
+        //            QuestionListView()
+        //        } else {
+        //            SplashScreenView(size: $size, opacity: $opacity)
+        //                .onAppear {
+        //                    withAnimation(.easeIn(duration: splashScreenDuration)) {
+        //                        self.size = 0.9
+        //                        self.opacity = 1.0
+        //                    }
+        //
+        //                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+        //                        withAnimation {
+        //                            self.isActive = true
+        //                        }
+        //                    }
+        //                }
+        //        }
     }
 }
 
