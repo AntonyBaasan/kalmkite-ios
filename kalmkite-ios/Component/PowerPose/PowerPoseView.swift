@@ -22,10 +22,11 @@ struct PowerPoseView: View {
         ZStack {
             // Background gradient
             LinearGradient(
-                colors: [Color.green.opacity(0.5), Color.green.opacity(0.2)],
+                colors: [Color.green.opacity(0.8), Color.green.opacity(0.6)],
                 startPoint: .topLeading,
                 endPoint: .bottomTrailing
-            ).ignoresSafeArea()
+            )
+            .ignoresSafeArea()
 //            LinearGradient(
 //                colors: [Color.green.opacity(0.7), Color.green.opacity(0.3)],
 //                startPoint: .topLeading,
@@ -52,7 +53,7 @@ struct PowerPoseView: View {
 
                     Text(exercise?.name ?? "Power Poses")
                         .font(.headline)
-                        .foregroundColor(.black)
+                        .foregroundColor(.white)
 
                     Spacer()
 
@@ -69,7 +70,7 @@ struct PowerPoseView: View {
                         Capsule()
                             .fill(
                                 index <= currentIndex
-                                    ? Color.black : Color.black.opacity(0.3)
+                                    ? Color.white : Color.white.opacity(0.3)
                             )
                             .frame(height: 4)
                     }
@@ -88,20 +89,20 @@ struct PowerPoseView: View {
                             // Pose number
                             Text("\(index + 1) of \(count)")
                                 .font(.subheadline)
-                                .foregroundColor(.black.opacity(0.8))
+                                .foregroundColor(.white.opacity(0.8))
 
                             // Pose title
                             Text(pose.title)
                                 .font(.title)
                                 .fontWeight(.bold)
-                                .foregroundColor(.black)
+                                .foregroundColor(.white)
                                 .multilineTextAlignment(.center)
                                 .padding(.horizontal, 40)
 
                             // Pose description
                             Text(pose.detail)
                                 .font(.title2)
-                                .foregroundColor(.black.opacity(0.9))
+                                .foregroundColor(.white.opacity(0.9))
                                 .multilineTextAlignment(.center)
                                 .padding(.horizontal, 40)
 
@@ -126,7 +127,7 @@ struct PowerPoseView: View {
                             .foregroundColor(.blue)
                             .frame(maxWidth: .infinity)
                             .padding()
-                            .background(Color.black)
+                            .background(Color.white)
                             .cornerRadius(12)
                     }
                     .padding(.horizontal, 40)
@@ -140,7 +141,7 @@ struct PowerPoseView: View {
                         Text("Swipe to continue")
                             .font(.subheadline)
                     }
-                    .foregroundColor(.black.opacity(0.7))
+                    .foregroundColor(.white.opacity(0.7))
                     .padding(.bottom, 40)
                 }
             }

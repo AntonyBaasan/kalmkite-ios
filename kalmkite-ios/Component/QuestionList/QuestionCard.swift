@@ -38,7 +38,7 @@ struct QuestionCard: View {
             Text(question.text)
                 .font(.body)
                 .fontWeight(.medium)
-                .foregroundColor(.primary)
+                .foregroundColor(.green)
                 .multilineTextAlignment(.leading)
                 .lineLimit(2)
             

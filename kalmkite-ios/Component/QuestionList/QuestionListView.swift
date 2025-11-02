@@ -66,8 +66,10 @@ struct QuestionListView: View {
                 }
             }
             .navigationTitle("Home")
+            .foregroundStyle(.white)
             .navigationBarTitleDisplayMode(.inline)
         }
+        .tint(.white)
     }
 }
 

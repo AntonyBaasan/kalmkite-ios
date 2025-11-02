@@ -19,6 +19,7 @@ struct GuidedBreathingView: View {
     @State private var progress: CGFloat = 0
     @State private var timer: Timer?
     @State private var isComplete: Bool = false
+    @State private var animateScale = false
 
     private let circleMaxSize: CGFloat = 230
     private let circleMinSize: CGFloat = 180
@@ -29,10 +30,11 @@ struct GuidedBreathingView: View {
         ZStack {
             // Background gradient - same as FocusView
             LinearGradient(
-                colors: [Color.green.opacity(0.5), Color.green.opacity(0.2)],
+                colors: [.green.opacity(0.8), .green.opacity(0.6)],
                 startPoint: .topLeading,
                 endPoint: .bottomTrailing
-            ).ignoresSafeArea()
+            )
+            .ignoresSafeArea()
 
             VStack {
                 // Header
@@ -41,7 +43,7 @@ struct GuidedBreathingView: View {
 
                     Text(exercise?.name ?? "Breathing")
                         .font(.headline)
-                        .foregroundColor(.black)
+                        .foregroundColor(.white)
 
                     Spacer()
                 }
@@ -95,12 +97,25 @@ struct GuidedBreathingView: View {
                                     design: .rounded
                                 )
                             )
-                            .foregroundColor(.black)
+                            .foregroundColor(.white)
+                            .scaleEffect(animateScale ? 1.2 : 1.0)
+                            .animation(
+                                .spring(response: 0.3, dampingFraction: 0.5),
+                                value: animateScale
+                            )
+                            .onChange(of: phaseText) { oldValue, newValue in
+                                animateScale = true
+                                DispatchQueue.main.asyncAfter(
+                                    deadline: .now() + 0.15
+                                ) {
+                                    animateScale = false
+                                }
+                            }
 
                         if isBreathingActive {
                             Text("\(phaseProgress)s")
                                 .font(.system(size: 18, weight: .medium))
-                                .foregroundColor(.gray.opacity(0.8))
+                                .foregroundColor(.white.opacity(0.9))
                         }
                     }
                 }
@@ -116,14 +131,14 @@ struct GuidedBreathingView: View {
                     .font(
                         .system(size: 24, weight: .semibold, design: .rounded)
                     )
-                    .foregroundColor(.black)
+                    .foregroundColor(.white)
                     .padding(.bottom, 20)
 
                 // Details
                 if let details = exercise?.details {
                     Text(details)
                         .font(.body)
-                        .foregroundColor(.black.opacity(0.9))
+                        .foregroundColor(.white.opacity(0.9))
                         .multilineTextAlignment(.center)
                         .padding(.horizontal, 40)
                         .transition(.opacity)
@@ -141,7 +156,7 @@ struct GuidedBreathingView: View {
                             .foregroundColor(.green)
                             .frame(maxWidth: .infinity)
                             .padding()
-                            .background(Color.black)
+                            .background(Color.white)
                             .cornerRadius(12)
                             .padding(.horizontal, 40)
                             .padding(.bottom, 40)
@@ -154,7 +169,7 @@ struct GuidedBreathingView: View {
                             .foregroundColor(
                                 isBreathingActive
                                     ? Color.green
-                                    : Color.black
+                                    : Color.white
                             )
                             .frame(maxWidth: .infinity)
                             .padding()
@@ -208,7 +223,7 @@ struct GuidedBreathingView: View {
 
     private func toggleBreathing() {
         if isBreathingActive {
-//            stopBreathing()
+            //            stopBreathing()
             dismiss()
         } else {
             startBreathing()

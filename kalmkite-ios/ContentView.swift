@@ -17,8 +17,18 @@ struct ContentView: View {
     @State private var size = 0.8
     @State private var opacity = 0.5
 
+    init() {
+        // For inline title
+        let appearance = UINavigationBarAppearance()
+        appearance.titleTextAttributes = [.foregroundColor: UIColor.white]
+        appearance.largeTitleTextAttributes = [.foregroundColor: UIColor.white]
+
+        UINavigationBar.appearance().standardAppearance = appearance
+        UINavigationBar.appearance().scrollEdgeAppearance = appearance
+    }
+
     var body: some View {
-//        QuestionListView()
+        //        QuestionListView()
         if isActive {
             QuestionListView()
         } else {
@@ -28,7 +38,7 @@ struct ContentView: View {
                         self.size = 0.9
                         self.opacity = 1.0
                     }
-                        
+
                     DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
                         withAnimation {
                             self.isActive = true

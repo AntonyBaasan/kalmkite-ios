@@ -1,0 +1,38 @@
+{
+  "configurations" : [
+    {
+      "id" : "3BE9043C-EA9F-48DB-B02D-40BCFF23E343",
+      "name" : "Test Scheme Action",
+      "options" : {
+
+      }
+    }
+  ],
+  "defaultOptions" : {
+    "performanceAntipatternCheckerEnabled" : true,
+    "targetForVariableExpansion" : {
+      "containerPath" : "container:kalmkite-ios.xcodeproj",
+      "identifier" : "4F33E00E2E91825A00083E96",
+      "name" : "kalmkite-ios"
+    }
+  },
+  "testTargets" : [
+    {
+      "parallelizable" : true,
+      "target" : {
+        "containerPath" : "container:kalmkite-ios.xcodeproj",
+        "identifier" : "4F33E01D2E91825B00083E96",
+        "name" : "kalmkite-iosTests"
+      }
+    },
+    {
+      "parallelizable" : true,
+      "target" : {
+        "containerPath" : "container:kalmkite-ios.xcodeproj",
+        "identifier" : "4F33E0272E91825B00083E96",
+        "name" : "kalmkite-iosUITests"
+      }
+    }
+  ],
+  "version" : 1
+}

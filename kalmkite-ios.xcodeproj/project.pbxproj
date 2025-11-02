@@ -33,6 +33,7 @@
 		4F33E00F2E91825A00083E96 /* kalmkite-ios.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "kalmkite-ios.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		4F33E01E2E91825B00083E96 /* kalmkite-iosTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "kalmkite-iosTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		4F33E0282E91825B00083E96 /* kalmkite-iosUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "kalmkite-iosUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		4F4109342EB6D022002A633F /* kalmkite-ios.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = "kalmkite-ios.xctestplan"; sourceTree = "<group>"; };
 		4F62C3102EB412F20031CC5F /* KalmKiteIcon.icon */ = {isa = PBXFileReference; lastKnownFileType = folder.iconcomposer.icon; path = KalmKiteIcon.icon; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -84,6 +85,7 @@
 		4F33E0062E91825A00083E96 = {
 			isa = PBXGroup;
 			children = (
+				4F4109342EB6D022002A633F /* kalmkite-ios.xctestplan */,
 				4F62C3102EB412F20031CC5F /* KalmKiteIcon.icon */,
 				4F33E0112E91825A00083E96 /* kalmkite-ios */,
 				4F33E0212E91825B00083E96 /* kalmkite-iosTests */,
@@ -414,6 +416,7 @@
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = NO;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "kalmkite-ios/Assets.xcassets";
 				DEVELOPMENT_TEAM = K5N9AY5762;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -448,6 +451,7 @@
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = NO;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "kalmkite-ios/Assets.xcassets";
 				DEVELOPMENT_TEAM = K5N9AY5762;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;

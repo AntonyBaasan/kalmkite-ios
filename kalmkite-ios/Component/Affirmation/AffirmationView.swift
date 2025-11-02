@@ -22,7 +22,7 @@ struct AffirmationView: View {
         ZStack {
             // Background gradient - same as PowerPoseView
             LinearGradient(
-                colors: [Color.green.opacity(0.5), Color.green.opacity(0.2)],
+                colors: [Color.green.opacity(0.8), Color.green.opacity(0.6)],
                 startPoint: .topLeading,
                 endPoint: .bottomTrailing
             )
@@ -43,7 +43,7 @@ struct AffirmationView: View {
                     
                     Text(exercise?.name ?? "Affirmations")
                         .font(.headline)
-                        .foregroundColor(.black)
+                        .foregroundColor(.white)
                     
                     Spacer()
                     
@@ -60,7 +60,7 @@ struct AffirmationView: View {
                         Capsule()
                             .fill(
                                 index <= currentIndex
-                                    ? .black : .black.opacity(0.3)
+                                    ? .white : .white.opacity(0.3)
                             )
                             .frame(height: 4)
                     }
@@ -77,13 +77,13 @@ struct AffirmationView: View {
                             // Affirmation number
                             Text("\(index + 1) of \(count)")
                                 .font(.subheadline)
-                                .foregroundColor(.black.opacity(0.8))
+                                .foregroundColor(.white.opacity(0.8))
                             
                             // Affirmation text
                             Text(affirmation)
                                 .font(.title2)
                                 .fontWeight(.medium)
-                                .foregroundColor(.black)
+                                .foregroundColor(.white)
                                 .multilineTextAlignment(.center)
                                 .padding(.horizontal, 40)
                                 .minimumScaleFactor(0.8)
@@ -109,7 +109,7 @@ struct AffirmationView: View {
                             .foregroundColor(.green)
                             .frame(maxWidth: .infinity)
                             .padding()
-                            .background(Color.black)
+                            .background(Color.white)
                             .cornerRadius(12)
                     }
                     .padding(.horizontal, 40)
@@ -123,7 +123,7 @@ struct AffirmationView: View {
                         Text("Swipe to continue")
                             .font(.subheadline)
                     }
-                    .foregroundColor(.black.opacity(0.7))
+                    .foregroundColor(.white.opacity(0.7))
                     .padding(.bottom, 40)
                 }
             }

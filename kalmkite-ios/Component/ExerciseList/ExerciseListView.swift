@@ -17,16 +17,12 @@ struct ExerciseListView: View {
         ZStack {
             // Background gradient
             LinearGradient(
-                colors: [
-                    Color.green.opacity(0.2),
-                    Color.green.opacity(0.1),
-                    Color.white
-                ],
+                colors: [.green.opacity(0.8), .green.opacity(0.6)],
                 startPoint: .topLeading,
                 endPoint: .bottomTrailing
             )
             .ignoresSafeArea()
-            
+
             ScrollView {
                 VStack(spacing: 0) {
                     // Header section
@@ -34,11 +30,11 @@ struct ExerciseListView: View {
                         Text("Choose an exercise")
                             .font(.title2)
                             .fontWeight(.bold)
-                            .foregroundColor(.primary)
+                            .foregroundColor(.white)
                         
                         Text("Pick what feels right for you now")
                             .font(.subheadline)
-                            .foregroundColor(.secondary)
+                            .foregroundColor(.white.opacity(0.8))
                     }
                     .padding(.top, 20)
                     .padding(.bottom, 30)

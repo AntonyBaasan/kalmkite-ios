@@ -39,7 +39,7 @@ struct ExerciseLargeCard: View {
                     Text(exercise.name)
                         .font(.title3)
                         .fontWeight(.semibold)
-                        .foregroundColor(.primary)
+                        .foregroundColor(.green)
 
                     // Duration
                     HStack(spacing: 4) {
@@ -48,7 +48,7 @@ struct ExerciseLargeCard: View {
                         Text(durationString)
                             .font(.subheadline)
                     }
-                    .foregroundColor(.secondary)
+                    .foregroundColor(.green.opacity(0.8))
                 }
 
                 Spacer()
@@ -57,7 +57,7 @@ struct ExerciseLargeCard: View {
             // Details/description
             Text(exercise.details)
                 .font(.body)
-                .foregroundColor(.secondary)
+                .foregroundColor(.green.opacity(0.9))
                 .lineLimit(3)
                 .multilineTextAlignment(.leading)
 
