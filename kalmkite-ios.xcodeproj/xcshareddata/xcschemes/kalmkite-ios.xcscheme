@@ -16,7 +16,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "4F33E00E2E91825A00083E96"
-               BuildableName = "kalmkite-ios.app"
+               BuildableName = "KalmKite.app"
                BlueprintName = "kalmkite-ios"
                ReferencedContainer = "container:kalmkite-ios.xcodeproj">
             </BuildableReference>
@@ -74,7 +74,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "4F33E00E2E91825A00083E96"
-            BuildableName = "kalmkite-ios.app"
+            BuildableName = "KalmKite.app"
             BlueprintName = "kalmkite-ios"
             ReferencedContainer = "container:kalmkite-ios.xcodeproj">
          </BuildableReference>
@@ -91,7 +91,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "4F33E00E2E91825A00083E96"
-            BuildableName = "kalmkite-ios.app"
+            BuildableName = "KalmKite.app"
             BlueprintName = "kalmkite-ios"
             ReferencedContainer = "container:kalmkite-ios.xcodeproj">
          </BuildableReference>
