@@ -25,7 +25,7 @@ struct FocusView: View {
         ZStack {
             // Background gradient
             LinearGradient(
-                colors: [Color.green.opacity(0.5), Color.green.opacity(0.2)],
+                colors: [Color.darkGreen.opacity(0.5), Color.darkGreen.opacity(0.2)],
                 startPoint: .topLeading,
                 endPoint: .bottomTrailing
             ).ignoresSafeArea()
@@ -95,7 +95,7 @@ struct FocusView: View {
                     } label: {
                         Text("Done")
                             .font(.headline)
-                            .foregroundColor(.green)
+                            .foregroundColor(.darkGreen)
                             .frame(maxWidth: .infinity)
                             .padding()
                             .background(Color.white)

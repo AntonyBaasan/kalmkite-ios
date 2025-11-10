@@ -22,7 +22,7 @@ struct AffirmationView: View {
         ZStack {
             // Background gradient - same as PowerPoseView
             LinearGradient(
-                colors: [Color.green.opacity(0.8), Color.green.opacity(0.6)],
+                colors: [Color.darkGreen.opacity(0.8), Color.darkGreen.opacity(0.6)],
                 startPoint: .topLeading,
                 endPoint: .bottomTrailing
             )
@@ -106,7 +106,7 @@ struct AffirmationView: View {
                     } label: {
                         Text("Done")
                             .font(.headline)
-                            .foregroundColor(.green)
+                            .foregroundColor(.darkGreen)
                             .frame(maxWidth: .infinity)
                             .padding()
                             .background(Color.white)

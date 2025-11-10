@@ -56,7 +56,7 @@ struct FocusBubbleView: View {
                     Circle()
                         .fill(
                             LinearGradient(
-                                colors: [Color.green.opacity(0.7), Color.green.opacity(0.4)],
+                                colors: [Color.darkGreen.opacity(0.7), Color.darkGreen.opacity(0.4)],
                                 startPoint: .top,
                                 endPoint: .bottom
                             )
@@ -79,7 +79,7 @@ struct FocusBubbleView: View {
                     } label: {
                         Text("Done")
                             .font(.headline)
-                            .foregroundColor(.green)
+                            .foregroundColor(.darkGreen)
                             .frame(maxWidth: .infinity)
                             .padding()
                             .background(Color.white)

@@ -30,7 +30,7 @@ struct WalkSessionView: View {
         ZStack {
             // Background gradient
             LinearGradient(
-                colors: [Color.green.opacity(0.8), Color.green.opacity(0.5)],
+                colors: [Color.darkGreen.opacity(0.8), Color.darkGreen.opacity(0.5)],
                 startPoint: .topLeading,
                 endPoint: .bottomTrailing
             )
@@ -100,7 +100,7 @@ struct WalkSessionView: View {
                                 : "Time's Up - Complete Walk"
                         )
                         .font(.headline)
-                        .foregroundColor(.green)
+                        .foregroundColor(.darkGreen)
                         .frame(maxWidth: .infinity)
                         .padding()
                         .background(Color.white)

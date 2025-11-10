@@ -22,7 +22,7 @@ struct PowerPoseView: View {
         ZStack {
             // Background gradient
             LinearGradient(
-                colors: [Color.green.opacity(0.8), Color.green.opacity(0.6)],
+                colors: [Color.darkGreen.opacity(0.8), Color.darkGreen.opacity(0.6)],
                 startPoint: .topLeading,
                 endPoint: .bottomTrailing
             )

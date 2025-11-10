@@ -30,7 +30,7 @@ struct GuidedBreathingView: View {
         ZStack {
             // Background gradient - same as FocusView
             LinearGradient(
-                colors: [.green.opacity(0.8), .green.opacity(0.6)],
+                colors: [.darkGreen.opacity(0.8), .darkGreen.opacity(0.6)],
                 startPoint: .topLeading,
                 endPoint: .bottomTrailing
             )
@@ -153,7 +153,7 @@ struct GuidedBreathingView: View {
                     } label: {
                         Text("Done")
                             .font(.headline)
-                            .foregroundColor(.green)
+                            .foregroundColor(.darkGreen)
                             .frame(maxWidth: .infinity)
                             .padding()
                             .background(Color.white)
@@ -168,7 +168,7 @@ struct GuidedBreathingView: View {
                             .font(.headline)
                             .foregroundColor(
                                 isBreathingActive
-                                    ? Color.green
+                                    ? Color.darkGreen
                                     : Color.white
                             )
                             .frame(maxWidth: .infinity)

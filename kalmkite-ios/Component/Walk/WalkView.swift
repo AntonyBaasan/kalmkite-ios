@@ -20,7 +20,7 @@ struct WalkView: View {
         ZStack {
             // Background gradient
             LinearGradient(
-                colors: [.green.opacity(0.8), .green.opacity(0.6)],
+                colors: [.darkGreen.opacity(0.8), .darkGreen.opacity(0.6)],
                 startPoint: .topLeading,
                 endPoint: .bottomTrailing
             )

@@ -20,7 +20,7 @@ struct ExerciseResultView: View {
             // Background gradient
             LinearGradient(
                 colors: result.isSuccess
-                    ? [Color.green.opacity(0.8), Color.green.opacity(0.5)]
+                    ? [Color.darkGreen.opacity(0.8), Color.darkGreen.opacity(0.5)]
                     : [Color.blue.opacity(0.8), Color.blue.opacity(0.5)],
                 startPoint: .topLeading,
                 endPoint: .bottomTrailing
@@ -84,7 +84,7 @@ struct ExerciseResultView: View {
                     } label: {
                         Text("Done")
                             .font(.headline)
-                            .foregroundColor(result.isSuccess ? .green : .blue)
+                            .foregroundColor(result.isSuccess ? .darkGreen : .blue)
                             .frame(maxWidth: .infinity)
                             .padding()
                             .background(Color.white)

@@ -15,7 +15,7 @@ struct FocusCircularView: View {
         ZStack {
             // Background gradient
             LinearGradient(
-                colors: [Color.green.opacity(0.8), Color.green.opacity(0.5)],
+                colors: [Color.darkGreen.opacity(0.8), Color.darkGreen.opacity(0.5)],
                 startPoint: .topLeading,
                 endPoint: .bottomTrailing
             )
@@ -70,7 +70,7 @@ struct FocusCircularView: View {
                     } label: {
                         Text("Done")
                             .font(.headline)
-                            .foregroundColor(.green)
+                            .foregroundColor(.darkGreen)
                             .frame(maxWidth: .infinity)
                             .padding()
                             .background(Color.white)

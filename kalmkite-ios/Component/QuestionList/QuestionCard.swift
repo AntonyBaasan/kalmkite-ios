@@ -20,8 +20,8 @@ struct QuestionCard: View {
                     .fill(
                         LinearGradient(
                             colors: [
-                                Color.green.opacity(0.6),
-                                Color.green.opacity(0.4)
+                                Color.darkGreen.opacity(0.6),
+                                Color.darkGreen.opacity(0.4)
                             ],
                             startPoint: .topLeading,
                             endPoint: .bottomTrailing
