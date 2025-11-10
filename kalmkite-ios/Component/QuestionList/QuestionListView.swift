@@ -26,7 +26,7 @@ struct QuestionListView: View {
             ZStack {
                 // Background gradient
                 LinearGradient(
-                    colors: [.green.opacity(0.8), .green.opacity(0.6)],
+                    colors: [.darkGreen.opacity(0.8), .darkGreen.opacity(0.6)],
                     startPoint: .topLeading,
                     endPoint: .bottomTrailing
                 )
@@ -37,7 +37,7 @@ struct QuestionListView: View {
                         // Header section
                         VStack(spacing: 12) {
                             Text(title)
-                                .font(.system(size: 32, weight: .bold))
+                                .font(.system(size: 48, weight: .bold))
                                 .foregroundColor(.white)
                                 .multilineTextAlignment(.center)
 
@@ -50,7 +50,7 @@ struct QuestionListView: View {
                         .padding(.horizontal)
 
                         // Question cards
-                        VStack(spacing: 16) {
+                        VStack(spacing: 8) {
                             ForEach(questions) { question in
                                 NavigationLink(
                                     destination: ExerciseListView(
@@ -63,7 +63,7 @@ struct QuestionListView: View {
                             }
                         }
                         .padding(.horizontal, 20)
-                        .padding(.bottom, 20)
+                        .padding(.bottom, 5)
                         .onAppear {
                             titleOptions.shuffle()
                         }
