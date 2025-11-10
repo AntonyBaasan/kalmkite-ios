@@ -85,3 +85,6 @@ Pods/
 .swiftpm/
 
 !*.xcworkspace/xcshareddata/swiftpm/Package.resolved
+
+# Gemini
+GEMINI.md

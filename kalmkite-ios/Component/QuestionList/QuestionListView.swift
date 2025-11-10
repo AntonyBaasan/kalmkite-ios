@@ -8,11 +8,21 @@
 import SwiftUI
 
 struct QuestionListView: View {
+    @State var title: String = ""
+    @State var titleOptions: [String] = [
+        "How’s Your Mind Today?",
+        "What’s On Your Heart?",
+        "Where’s Your Head At?",
+        "How’s Your Inner Weather?",
+        "What’s Moving Inside?",
+        "How Are You Showing Up?",
+        "What's Rising for You?",
+    ]
     @State var questions: [Question] = QuestionStore.shared.questions
 
     var body: some View {
         NavigationStack {
-            
+
             ZStack {
                 // Background gradient
                 LinearGradient(
@@ -21,16 +31,16 @@ struct QuestionListView: View {
                     endPoint: .bottomTrailing
                 )
                 .ignoresSafeArea()
-                
+
                 ScrollView {
                     VStack(spacing: 0) {
                         // Header section
                         VStack(spacing: 12) {
-                            Text("How are you feeling?")
+                            Text(title)
                                 .font(.system(size: 32, weight: .bold))
                                 .foregroundColor(.white)
                                 .multilineTextAlignment(.center)
-                            
+
                             Text("Select what's on your mind")
                                 .font(.subheadline)
                                 .foregroundColor(.white.opacity(0.9))
@@ -38,7 +48,7 @@ struct QuestionListView: View {
                         .padding(.top, 20)
                         .padding(.bottom, 30)
                         .padding(.horizontal)
-                        
+
                         // Question cards
                         VStack(spacing: 16) {
                             ForEach(questions) { question in
@@ -54,14 +64,17 @@ struct QuestionListView: View {
                         }
                         .padding(.horizontal, 20)
                         .padding(.bottom, 20)
-                        
+                        .onAppear {
+                            titleOptions.shuffle()
+                        }
+
                         // Test view link (for development)
-//                        NavigationLink(destination: TestView()) {
-//                            Text("Developer: Test View")
-//                                .font(.caption)
-//                                .foregroundColor(.secondary)
-//                                .padding(.vertical, 20)
-//                        }
+                        //                        NavigationLink(destination: TestView()) {
+                        //                            Text("Developer: Test View")
+                        //                                .font(.caption)
+                        //                                .foregroundColor(.secondary)
+                        //                                .padding(.vertical, 20)
+                        //                        }
                     }
                 }
             }
@@ -70,6 +83,10 @@ struct QuestionListView: View {
             .navigationBarTitleDisplayMode(.inline)
         }
         .tint(.white)
+        .onAppear {
+            title = titleOptions.shuffled().first ?? titleOptions[0]
+        }
+
     }
 }
 
