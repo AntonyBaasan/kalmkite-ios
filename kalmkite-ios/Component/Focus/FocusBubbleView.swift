@@ -9,7 +9,7 @@ import SwiftUI
 struct FocusBubbleView: View {
     @Environment(\.dismiss) private var dismiss
 
-    let exerciseId: Int
+    let exerciseId: UUID
     @State private var exercise: Exercise?
     @State private var remainingTime: TimeInterval = 0
     @State private var totalTime: TimeInterval = 0
@@ -27,13 +27,13 @@ struct FocusBubbleView: View {
             VStack {
                 // Header
                 HStack {
-//                    Button {
-//                        dismiss()
-//                    } label: {
-//                        Image(systemName: "xmark")
-//                            .font(.title3)
-//                            .foregroundColor(.white)
-//                    }
+                    //                    Button {
+                    //                        dismiss()
+                    //                    } label: {
+                    //                        Image(systemName: "xmark")
+                    //                            .font(.title3)
+                    //                            .foregroundColor(.white)
+                    //                    }
 
                     Spacer()
 
@@ -43,9 +43,9 @@ struct FocusBubbleView: View {
 
                     Spacer()
 
-//                    Image(systemName: "xmark")
-//                        .font(.title3)
-//                        .foregroundColor(.clear)
+                    //                    Image(systemName: "xmark")
+                    //                        .font(.title3)
+                    //                        .foregroundColor(.clear)
                 }
                 .padding()
 
@@ -56,17 +56,30 @@ struct FocusBubbleView: View {
                     Circle()
                         .fill(
                             LinearGradient(
-                                colors: [Color.darkGreen.opacity(0.7), Color.darkGreen.opacity(0.4)],
+                                colors: [
+                                    Color.darkGreen.opacity(0.7),
+                                    Color.darkGreen.opacity(0.4),
+                                ],
                                 startPoint: .top,
                                 endPoint: .bottom
                             )
                         )
-                        .frame(width: 200 * bubbleScale, height: 200 * bubbleScale)
-                        .shadow(color: Color.green.opacity(0.5), radius: 20, x: 0, y: 0)
+                        .frame(
+                            width: 200 * bubbleScale,
+                            height: 200 * bubbleScale
+                        )
+                        .shadow(
+                            color: Color.green.opacity(0.5),
+                            radius: 20,
+                            x: 0,
+                            y: 0
+                        )
 
                     // Countdown timer inside bubble
                     Text(timeString(from: remainingTime))
-                        .font(.system(size: 40, weight: .bold, design: .rounded))
+                        .font(
+                            .system(size: 40, weight: .bold, design: .rounded)
+                        )
                         .foregroundColor(.white)
                 }
                 .animation(.linear(duration: 1), value: bubbleScale)
@@ -98,8 +111,8 @@ struct FocusBubbleView: View {
             // Load exercise duration
             if let ex = ExerciseStore.shared.getExercise(by: exerciseId) {
                 self.exercise = ex
-                self.totalTime = ex.duration
-                self.remainingTime = ex.duration
+                self.totalTime = TimeInterval(ex.duration)
+                self.remainingTime = TimeInterval(ex.duration)
                 startTimer()
             }
         }
@@ -131,8 +144,8 @@ struct FocusBubbleView: View {
     }
 }
 
-
-
 #Preview {
-    FocusView(exerciseId: 4)
+    FocusView(
+        exerciseId: UUID(uuidString: "0FEDCBA9-8765-4321-0FED-CBA987654321")!
+    )
 }

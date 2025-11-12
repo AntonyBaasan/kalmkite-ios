@@ -7,7 +7,6 @@
 import Foundation
 import SwiftData
 
-@Model
 class Activity : Identifiable {
     var id: UUID = UUID()
     var exercise: Exercise

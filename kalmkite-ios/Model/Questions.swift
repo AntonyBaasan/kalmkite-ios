@@ -7,18 +7,17 @@
 import Foundation
 import SwiftData
 
-@Model
 class Question: Identifiable {
-    var id: Int
+    var id: QuestionId
     var text: String
+    var detail: String
     var icon: String
-    var connectedExercises: [Int] = []
     
-    init(id: Int, text: String, icon: String, connectedExercises: [Int] = []) {
+    init(id: QuestionId, text: String, detail: String, icon: String) {
         self.id = id
         self.text = text
+        self.detail = detail
         self.icon = icon
-        self.connectedExercises = connectedExercises
     }
 }
     

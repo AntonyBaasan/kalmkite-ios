@@ -69,9 +69,9 @@ struct QuestionCard: View {
 
 #Preview {
     QuestionCard(question: Question(
-        id: 2,
+        id: QuestionId.workload,
         text: "Pre-presentation anxiety",
-        icon: "chart.bar.fill",
-        connectedExercises: [1, 3, 6]
+        detail: "Pre-presentation anxiety",
+        icon: "chart.bar.fill"
     ),)
 }

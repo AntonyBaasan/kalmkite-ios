@@ -12,44 +12,57 @@ class QuestionStore {
     private(set) var questions: [Question] = []
 
     private init() {
-        loadSampleQuestions()
+        questions = loadSampleQuestions()
     }
 
-    func loadSampleQuestions() {
-        questions = [
+    func loadSampleQuestions() -> [Question] {
+        return [
             Question(
-                id: 1,
-                text: "Too many meetings",
-                icon: "calendar",
-                connectedExercises: [1, 2]
+                id: QuestionId.workload,
+                text: "Too much on your plate?",
+                detail:
+                    "Feeling overwhelmed by tasks, deadlines, or expectations?",
+                icon: "tray.full"
             ),
             Question(
-                id: 2,
-                text: "Pre-presentation anxiety",
-                icon: "chart.bar.fill",
-                connectedExercises: [1, 3, 6]
+                id: QuestionId.workLifeBalance,
+                text: "Struggling with work-life balance?",
+                detail:
+                    "Finding it hard to disconnect or make time for yourself?",
+                icon: "clock.arrow.2.circlepath"
             ),
             Question(
-                id: 3,
-                text: "Can’t focus",
-                icon: "brain.head.profile",
-                connectedExercises: [5, 4]
+                id: QuestionId.autonomy,
+                text: "Wishing for more control?",
+                detail: "Feeling like decisions are made without your input?",
+                icon: "slider.horizontal.3"
             ),
             Question(
-                id: 4,
-                text: "Feeling behind",
-                icon: "clock.fill",
-                connectedExercises: [3, 2]
+                id: QuestionId.micromanagement,
+                text: "Feeling micromanaged at work?",
+                detail: "Not trusted to work independently or make choices?",
+                icon: "eye"
             ),
             Question(
-                id: 5,
-                text: "Hard conversation coming up",
-                icon: "person.2.fill",
-                connectedExercises: [1, 3]
-            )
+                id: QuestionId.workspace,
+                text: "Workspace not helping you focus?",
+                detail:
+                    "Physical environment making it hard to concentrate or feel comfortable?",
+                icon: "deskclock"
+            ),
+            Question(
+                id: QuestionId.recognition,
+                text: "Feeling stuck or unrecognized?",
+                detail: "Not seeing growth or appreciation for your efforts?",
+                icon: "star.slash"
+            ),
+            Question(
+                id: QuestionId.conflict,
+                text: "Tension with someone at work?",
+                detail:
+                    "Experiencing conflict or discomfort in workplace relationships?",
+                icon: "person.2.badge.gearshape"
+            ),
         ]
     }
-    
-    
-
 }

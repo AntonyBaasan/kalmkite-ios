@@ -3,7 +3,7 @@ import SwiftUI
 struct FocusCircularView: View {
     @Environment(\.dismiss) private var dismiss
 
-    let exerciseId: Int
+    let exerciseId: UUID
     @State private var exercise: Exercise?
     @State private var remainingTime: TimeInterval = 0
     @State private var totalTime: TimeInterval = 0
@@ -15,7 +15,9 @@ struct FocusCircularView: View {
         ZStack {
             // Background gradient
             LinearGradient(
-                colors: [Color.darkGreen.opacity(0.8), Color.darkGreen.opacity(0.5)],
+                colors: [
+                    Color.darkGreen.opacity(0.8), Color.darkGreen.opacity(0.5),
+                ],
                 startPoint: .topLeading,
                 endPoint: .bottomTrailing
             )
@@ -42,10 +44,16 @@ struct FocusCircularView: View {
                         .stroke(Color.white.opacity(0.3), lineWidth: 20)
 
                     Circle()
-                        .trim(from: 0, to: totalTime > 0 ? CGFloat(remainingTime / totalTime) : 0)
+                        .trim(
+                            from: 0,
+                            to: totalTime > 0
+                                ? CGFloat(remainingTime / totalTime) : 0
+                        )
                         .stroke(
                             LinearGradient(
-                                colors: [Color.white, Color.white.opacity(0.7)],
+                                colors: [
+                                    Color.white, Color.white.opacity(0.7),
+                                ],
                                 startPoint: .topLeading,
                                 endPoint: .bottomTrailing
                             ),
@@ -55,7 +63,9 @@ struct FocusCircularView: View {
                         .animation(.linear(duration: 1), value: remainingTime)
 
                     Text(timeString(from: remainingTime))
-                        .font(.system(size: 50, weight: .bold, design: .rounded))
+                        .font(
+                            .system(size: 50, weight: .bold, design: .rounded)
+                        )
                         .foregroundColor(.white)
                 }
                 .frame(width: 250, height: 250)
@@ -90,8 +100,8 @@ struct FocusCircularView: View {
         .onAppear {
             if let ex = ExerciseStore.shared.getExercise(by: exerciseId) {
                 self.exercise = ex
-                self.totalTime = ex.duration
-                self.remainingTime = ex.duration
+                self.totalTime = TimeInterval(ex.duration)
+                self.remainingTime = TimeInterval(ex.duration)
                 startTimer()
             }
         }
@@ -135,5 +145,5 @@ struct FocusCircularView: View {
 }
 
 #Preview {
-    FocusCircularView(exerciseId: 4)
+    //    FocusCircularView(exerciseId: 4)
 }

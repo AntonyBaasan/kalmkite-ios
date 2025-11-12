@@ -11,7 +11,7 @@ import SwiftUI
 struct WalkSessionView: View {
     @Environment(\.dismiss) private var dismiss
 
-    let exerciseId: Int
+    let exerciseId: UUID
     let selectedItems: [WalkItem]
     let onDismissAll: () -> Void
     @State private var exercise: Exercise?
@@ -119,8 +119,8 @@ struct WalkSessionView: View {
         .onAppear {
             if let ex = ExerciseStore.shared.getExercise(by: exerciseId) {
                 self.exercise = ex
-                self.totalTime = ex.duration
-                self.remainingTime = ex.duration
+                self.totalTime = TimeInterval(ex.duration)
+                self.remainingTime = TimeInterval(ex.duration)
                 startTimer()
             }
         }
@@ -167,7 +167,7 @@ struct WalkSessionView: View {
 
 #Preview {
     WalkSessionView(
-        exerciseId: 5,
+        exerciseId: UUID(uuidString: "12345678-90AB-CDEF-1234-567890ABCDEF")!,
         selectedItems: [
             WalkItem(
                 id: 0,

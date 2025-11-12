@@ -12,7 +12,7 @@ import SwiftUI
 struct FocusView: View {
     @Environment(\.dismiss) private var dismiss
 
-    let exerciseId: Int
+    let exerciseId: UUID
     @State private var exercise: Exercise?
     @State private var remainingTime: TimeInterval = 0
     @State private var totalTime: TimeInterval = 0
@@ -110,8 +110,8 @@ struct FocusView: View {
             // Load exercise duration
             if let ex = ExerciseStore.shared.getExercise(by: exerciseId) {
                 self.exercise = ex
-                self.totalTime = ex.duration
-                self.remainingTime = ex.duration
+                self.totalTime = ex.durationAsTimeInterval
+                self.remainingTime = ex.durationAsTimeInterval
                 startTimer()
             }
         }
@@ -142,5 +142,5 @@ struct FocusView: View {
 
 
 #Preview {
-    FocusView(exerciseId: 4)
+    FocusView(exerciseId: UUID(uuidString: "A1B2C3D4-E5F6-7890-1234-56789ABCDEF0")!)
 }

@@ -54,7 +54,7 @@ struct QuestionListView: View {
                             ForEach(questions) { question in
                                 NavigationLink(
                                     destination: ExerciseListView(
-                                        exerciseIDs: question.connectedExercises
+                                        questionId: question.id
                                     )
                                 ) {
                                     QuestionCard(question: question)

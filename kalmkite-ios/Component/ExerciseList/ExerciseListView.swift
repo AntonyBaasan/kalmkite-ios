@@ -9,10 +9,10 @@ import Foundation
 import SwiftUI
 
 struct ExerciseListView: View {
-    let exerciseIDs: [Int]
-    
+    let questionId: QuestionId
+
     @State private var exercises: [Exercise] = []
-    
+
     var body: some View {
         ZStack {
             // Background gradient
@@ -31,7 +31,7 @@ struct ExerciseListView: View {
                             .font(.title2)
                             .fontWeight(.bold)
                             .foregroundColor(.white)
-                        
+
                         Text("Pick what feels right for you now")
                             .font(.subheadline)
                             .foregroundColor(.white.opacity(0.8))
@@ -39,12 +39,14 @@ struct ExerciseListView: View {
                     .padding(.top, 20)
                     .padding(.bottom, 30)
                     .padding(.horizontal)
-                    
+
                     // Exercise cards - larger since only 2-3 items
                     VStack(spacing: 20) {
                         ForEach(exercises) { exercise in
                             NavigationLink(
-                                destination: ExerciseDetailView(exerciseId: exercise.id)
+                                destination: ExerciseDetailView(
+                                    exerciseId: exercise.id
+                                )
                             ) {
                                 ExerciseLargeCard(exercise: exercise)
                             }
@@ -59,16 +61,11 @@ struct ExerciseListView: View {
         .navigationTitle("Exercises")
         .navigationBarTitleDisplayMode(.inline)
         .onAppear {
-            exercises = ExerciseStore.shared.exercises.filter {
-                $0.status == .Active
-                && exerciseIDs.contains($0.id)
-            }
+            exercises = ExerciseStore.shared.getExerciseByQuestionId(by: questionId)
         }
     }
 }
 
-
-
 #Preview {
-    ExerciseListView(exerciseIDs: [1, 2, 3, 4])
+    ExerciseListView(questionId: QuestionId.workload)
 }

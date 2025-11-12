@@ -11,5 +11,5 @@ public struct ExerciseResult {
     var isSuccess: Bool
     var message: String
     var motivation: String
-    var exerciseId: Int
+    var exerciseId: UUID
 }

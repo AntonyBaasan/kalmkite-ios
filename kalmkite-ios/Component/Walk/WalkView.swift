@@ -10,7 +10,7 @@ import SwiftUI
 struct WalkView: View {
     @Environment(\.dismiss) private var dismiss
     
-    let exerciseId: Int
+    let exerciseId: UUID
     @State private var exercise: Exercise?
     @State private var selectedItems: Set<Int> = []
     @State private var showWalkSession = false
@@ -143,5 +143,5 @@ struct WalkView: View {
 }
 
 #Preview {
-    WalkView(exerciseId: 5)
+    WalkView(exerciseId: UUID(uuidString: "12345678-90AB-CDEF-1234-567890ABCDEF")!)
 }

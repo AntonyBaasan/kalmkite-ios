@@ -7,22 +7,30 @@
 import Foundation
 import SwiftData
 
-@Model
 class Exercise: Identifiable {
-    var id: Int
+    var id: UUID
+    var questionId: QuestionId
     var name: String
     var details: String
-    var duration: TimeInterval
     var status: ExerciseStatus
     var exerciseType: ExerciseType
     var metadata: [String: String] = [:]
 
-    init(id: Int, name: String, details: String, duration: TimeInterval, status: ExerciseStatus, exerciseType: ExerciseType) {
+    init(
+        id: UUID,
+        questionId: QuestionId,
+        name: String,
+        details: String,
+        status: ExerciseStatus,
+        exerciseType: ExerciseType,
+        metadata: [String: String] = [:]
+    ) {
         self.id = id
+        self.questionId = questionId
         self.name = name
         self.details = details
-        self.duration = duration
         self.status = status
         self.exerciseType = exerciseType
+        self.metadata = metadata
     }
 }

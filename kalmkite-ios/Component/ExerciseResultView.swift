@@ -134,7 +134,7 @@ struct ExerciseResultView: View {
             isSuccess: true,
             message: "Congragulations!",
             motivation: "Great job completing the breathing exercise!",
-            exerciseId: 1
+            exerciseId: UUID(uuidString: "A1B2C3D4-E5F6-7890-1234-56789ABCDEF0")!
         ),
         onDismiss: {
             print("Dismissed")

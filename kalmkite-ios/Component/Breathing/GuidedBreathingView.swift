@@ -10,7 +10,7 @@ import SwiftUI
 struct GuidedBreathingView: View {
     @Environment(\.dismiss) private var dismiss
 
-    let exerciseId: Int
+    let exerciseId: UUID
     @State private var exercise: Exercise?
     @State private var secondsLeft: Int = 0
     @State private var isBreathingActive = false

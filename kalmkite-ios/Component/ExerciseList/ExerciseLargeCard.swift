@@ -10,6 +10,7 @@ import SwiftUI
 struct ExerciseLargeCard: View {
     let exercise: Exercise
     @State private var isPressed = false
+    @State private var defaultDurationSeconds = 120
 
     var body: some View {
         VStack(alignment: .leading, spacing: 16) {
@@ -96,10 +97,16 @@ struct ExerciseLargeCard: View {
 
     // Duration formatter
     private var durationString: String {
-        let minutes = Int(exercise.duration) / 60
-        if minutes < 1 {
-            return "\(Int(exercise.duration))s"
+        
+        if let durationStr = exercise.metadata["duration"], let duration = Int(durationStr) {
+            let minutes = duration / 60
+            if minutes < 1 {
+                return "\(Int(duration))s"
+            } else {
+                return "\(minutes) min"
+            }
         } else {
+            let minutes = defaultDurationSeconds / 60
             return "\(minutes) min"
         }
     }
@@ -162,12 +169,16 @@ struct ExerciseLargeCard: View {
 #Preview {
     ExerciseLargeCard(
         exercise: Exercise(
-            id: 1,
+            id: UUID(),
+            questionId: QuestionId.workload,
             name: "Guided Breathing",
             details: "A 2-minute breathing exercise to help you reset.",
-            duration: 60,
             status: ExerciseStatus.Active,
-            exerciseType: ExerciseType.Breathing
+            exerciseType: ExerciseType.Breathing,
+            metadata: [
+                "duration": "120"
+            ]
+            
         )
     )
 }

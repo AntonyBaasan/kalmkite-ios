@@ -10,9 +10,9 @@ import SwiftUI
 struct PowerPoseView: View {
     @Environment(\.dismiss) private var dismiss
 
-    let exerciseId: Int
+    let exerciseId: UUID
     @State private var exercise: Exercise?
-    @State private var poses: [PowerPose] = []
+    @State private var poses: [Affirmation] = []
     @State private var currentIndex = 0
     @State private var isComplete = false
 
@@ -92,7 +92,7 @@ struct PowerPoseView: View {
                                 .foregroundColor(.white.opacity(0.8))
 
                             // Pose title
-                            Text(pose.title)
+                            Text(pose.text)
                                 .font(.title)
                                 .fontWeight(.bold)
                                 .foregroundColor(.white)
@@ -150,7 +150,7 @@ struct PowerPoseView: View {
             self.exercise = ExerciseStore.shared.getExercise(
                 by: self.exerciseId
             )
-            self.poses = PowerPoseStore.shared.getShuffled(count: count)
+            self.poses = AffirmationStore.shared.getAffirmationsByType(affirmationType: AffirmationType.powerpose, count: count)
         }
         .animation(.easeInOut, value: currentIndex)
         .fullScreenCover(isPresented: $isComplete) {
@@ -170,5 +170,5 @@ struct PowerPoseView: View {
 }
 
 #Preview {
-    PowerPoseView(exerciseId: 6)
+    PowerPoseView(exerciseId: UUID(uuidString: "FEDCBA98-7654-3210-FEDC-BA9876543210")!)
 }
