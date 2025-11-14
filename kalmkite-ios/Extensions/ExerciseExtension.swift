@@ -18,6 +18,10 @@ extension Exercise {
         return durationInt
     }
     
+    var instruction: String? {
+        return self.metadata["instruction"]
+    }
+    
     var durationAsTimeInterval: TimeInterval {
         return TimeInterval(self.duration)
     }

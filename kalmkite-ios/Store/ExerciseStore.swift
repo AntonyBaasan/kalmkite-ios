@@ -43,7 +43,7 @@ final class ExerciseStore {
                 questionId: .workload,
                 name: "Guided Breathing",
                 details: "A 5-minute breathing exercise to help you reset.",
-                status: ExerciseStatus.Active,
+                status: ExerciseStatus.Disabled,
                 exerciseType: ExerciseType.Breathing,
                 metadata: [
                     "duration": "300",
@@ -58,7 +58,8 @@ final class ExerciseStore {
                 status: ExerciseStatus.Active,
                 exerciseType: ExerciseType.FocusTime,
                 metadata: [
-                    "duration": "120"
+                    "duration": "1500",
+                    "instruction": "Concentrate on your task for the next 25 minutes."
                 ]
             ),
         ]

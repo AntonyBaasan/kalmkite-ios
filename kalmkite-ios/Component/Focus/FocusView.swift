@@ -7,8 +7,6 @@
 
 import SwiftUI
 
-import SwiftUI
-
 struct FocusView: View {
     @Environment(\.dismiss) private var dismiss
 
@@ -17,6 +15,7 @@ struct FocusView: View {
     @State private var remainingTime: TimeInterval = 0
     @State private var totalTime: TimeInterval = 0
     @State private var timer: Timer? = nil
+    @State private var instruction: String? = nil
     @State private var isComplete = false
 
     private let barWidth: CGFloat = 40
@@ -25,7 +24,9 @@ struct FocusView: View {
         ZStack {
             // Background gradient
             LinearGradient(
-                colors: [Color.darkGreen.opacity(0.5), Color.darkGreen.opacity(0.2)],
+                colors: [
+                    Color.darkGreen.opacity(0.5), Color.darkGreen.opacity(0.2),
+                ],
                 startPoint: .topLeading,
                 endPoint: .bottomTrailing
             ).ignoresSafeArea()
@@ -58,6 +59,11 @@ struct FocusView: View {
 
                 Spacer()
 
+                Text(self.instruction ?? "")
+                    .font(.system(size: 60, weight: .bold, design: .rounded))
+                    .foregroundColor(.white)
+                    .padding(.bottom, 32)
+
                 // Timer text
                 Text(timeString(from: remainingTime))
                     .font(.system(size: 60, weight: .bold, design: .rounded))
@@ -73,7 +79,9 @@ struct FocusView: View {
                     Capsule()
                         .fill(
                             LinearGradient(
-                                colors: [Color.white, Color.white.opacity(0.7)],
+                                colors: [
+                                    Color.white, Color.white.opacity(0.7),
+                                ],
                                 startPoint: .bottom,
                                 endPoint: .top
                             )
@@ -108,12 +116,18 @@ struct FocusView: View {
         }
         .onAppear {
             // Load exercise duration
+            print("FocusView appeared with exerciseId: \(exerciseId)")
             if let ex = ExerciseStore.shared.getExercise(by: exerciseId) {
                 self.exercise = ex
                 self.totalTime = ex.durationAsTimeInterval
                 self.remainingTime = ex.durationAsTimeInterval
+                if let instruction = ex.instruction {
+                    self.instruction = instruction
+                }
+
                 startTimer()
             }
+
         }
         .onDisappear {
             timer?.invalidate()
@@ -140,7 +154,8 @@ struct FocusView: View {
     }
 }
 
-
 #Preview {
-    FocusView(exerciseId: UUID(uuidString: "A1B2C3D4-E5F6-7890-1234-56789ABCDEF0")!)
+    FocusView(
+        exerciseId: UUID(uuidString: "A1B2C3D4-E5F6-7890-1234-56789ABCDEF0")!
+    )
 }
