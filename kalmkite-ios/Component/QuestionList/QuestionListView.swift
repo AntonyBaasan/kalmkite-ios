@@ -19,6 +19,7 @@ struct QuestionListView: View {
         "What's Rising for You?",
     ]
     @State var questions: [Question] = QuestionStore.shared.questions
+    @State var version: String = ""
 
     var body: some View {
         NavigationStack {
@@ -75,6 +76,8 @@ struct QuestionListView: View {
                         //                                .foregroundColor(.secondary)
                         //                                .padding(.vertical, 20)
                         //                        }
+                        Text(version)
+                            .padding(.top, 20)
                     }
                 }
             }
@@ -85,6 +88,12 @@ struct QuestionListView: View {
         .tint(.white)
         .onAppear {
             title = titleOptions.shuffled().first ?? titleOptions[0]
+            version =
+                "version "
+                + (Bundle.main.infoDictionary?["CFBundleShortVersionString"]
+                    as? String ?? "x") + "."
+                + (Bundle.main.infoDictionary?["CFBundleVersion"] as? String
+                    ?? "x")
         }
 
     }
