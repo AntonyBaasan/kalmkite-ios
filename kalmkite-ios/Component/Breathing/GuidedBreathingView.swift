@@ -194,8 +194,12 @@ struct GuidedBreathingView: View {
             exercise = ExerciseStore.shared.getExercise(by: exerciseId)
             secondsLeft = Int(exercise?.duration ?? 0)
         }
+        .onChange(of: isBreathingActive, { _, newValue in
+            UIApplication.shared.isIdleTimerDisabled = newValue
+        })
         .onDisappear {
             stopBreathing()
+            UIApplication.shared.isIdleTimerDisabled = false
         }
         .fullScreenCover(isPresented: $isComplete) {
             ExerciseResultView(
